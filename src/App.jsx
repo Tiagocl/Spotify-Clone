@@ -1,11 +1,11 @@
-import Header from "./Header"
+import Side from "./Side"
 
 function App() {
   
 
   return (
     <>
-      <Header />
+      <Side />
     </>
   )
 }
