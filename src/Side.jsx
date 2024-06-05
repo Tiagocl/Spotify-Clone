@@ -1,5 +1,5 @@
 import { Home, Search, Library, Plus, List } from 'lucide-react';
-
+import Playlist from './Playlist';
 export default function Header() {
     return (
 
@@ -40,6 +40,48 @@ export default function Header() {
                             <span>Recents</span>
                             <List size={20} id="list-icon" />
                         </div>
+                    </div>
+                    <div className="list-play">
+                        <Playlist img="src/assets/img1.png"
+                                  name="Chill"
+                                  ltype="Playlist"
+                                  user="tiago"
+                        />
+                        <Playlist img="src/assets/img1.png"
+                                  name="Chill"
+                                  ltype="Playlist"
+                                  user="tiago"
+                        />
+                        <Playlist img="src/assets/img1.png"
+                                  name="Chill"
+                                  ltype="Playlist"
+                                  user="tiago"
+                        />
+                        <Playlist img="src/assets/img1.png"
+                                  name="Chill"
+                                  ltype="Playlist"
+                                  user="tiago"
+                        />
+                        <Playlist img="src/assets/img1.png"
+                                  name="Chill"
+                                  ltype="Playlist"
+                                  user="tiago"
+                        />
+                        <Playlist img="src/assets/img1.png"
+                                  name="Chill"
+                                  ltype="Playlist"
+                                  user="tiago"
+                        />
+                        <Playlist img="src/assets/img1.png"
+                                  name="Chill"
+                                  ltype="Playlist"
+                                  user="tiago"
+                        />
+                        <Playlist img="src/assets/img1.png"
+                                  name="Chill"
+                                  ltype="Playlist"
+                                  user="tiago"
+                        />
                     </div>
                 </div>
             </div>
