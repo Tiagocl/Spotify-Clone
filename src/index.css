@@ -4,6 +4,7 @@ body {
   margin: 10px;
   background-color: black;
   font-family: "Gotham SSm A", "Gotham SSm B", "Helvatica Neue";
+  
 }
 
 
@@ -13,7 +14,7 @@ body {
   flex-direction: column;
   padding: 20px;
   max-width: 385px;
-  min-height: 20%; /* Ensures minimum height */
+  height: 75px; /* Ensures minimum height */
   margin-bottom: 10px;
   background-color: #121212;
   flex: 1;
@@ -25,13 +26,15 @@ body {
   flex-direction: column;
   gap: 10px;
   flex: 1;
-  padding: 20px;
-  max-width: 405px;
-  height: 55vh; /* Ensures minimum height */
+  
+  max-width: 425px;
+  height: calc(100vh - 215px);
   margin-bottom: 10px;
   background-color: #121212;
-  
-  padding-left: 0;
+  padding-top: 15px;
+  margin-bottom: 0;
+  padding-bottom: 0;
+ 
   
 } 
   
@@ -40,6 +43,11 @@ body {
   justify-content: space-between;
   align-items: center;
   padding-left: 20px;
+  margin-right: 20px;
+}
+
+.library a {
+  padding-top: 0;
 }
 
 .inicio:hover a, .inicio:hover #icons {
@@ -55,9 +63,7 @@ body {
   color: #FFFFFF;  /* Change color to white on hover */
 }
 
-.library a {
-  padding-top: 0;
-}
+
 #icons{
   transition: color 0.3s;
   color: #A7A7A7;
@@ -79,7 +85,20 @@ body {
   padding-left: 0;
   color: #A7A7A7;
   transition: color 0.3s;
-  font-size: 0.95rem;
+  font-size: 0.90rem;
+  font-weight: 700;
+}
+
+.lib-a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  padding: 10px;
+  padding-left: 0;
+  color: #A7A7A7;
+  transition: color 0.3s;
+  font-size: 0.90rem;
   font-weight: 700;
 }
 
@@ -120,6 +139,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding-left: 20px;
+  margin-right: 20px;
 }
 
 .search-icon {
@@ -154,10 +174,35 @@ body {
   color: #FFFFFF;transform: scale(1.1);
 }
 
+.playlist {
+  overflow-y: scroll;
+
+}
 
 .list-play {
   padding-top: 10px;
-  overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+  -webkit-border-radius: 10;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  
+  background: #A7A7A7; 
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+  background: #A7A7A7; 
 }
 
 .playlist-container {

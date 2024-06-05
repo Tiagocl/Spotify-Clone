@@ -21,11 +21,11 @@ export default function Header() {
 
             <div className="lib-container">
                 <div className="library">
-                    <a href="" className='header-a'>
+                    <a href="" className='lib-a'>
                         <Library size={25} id="lib-icon" />
                         Your Library
                     </a>
-                    <Plus size={25} id="icons" />
+                    <Plus size={21} id="icons" />
                 </div>
                 <div className="side-buttons">
                     <button>Playlists</button>
