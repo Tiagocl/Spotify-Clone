@@ -1,9 +1,11 @@
 import { Home, Search, Library, Plus, List } from 'lucide-react';
 import Playlist from './Playlist';
+import Button from './Button';
 export default function Header() {
     return (
 
         <>
+        <div className="side-container">
             <div className="search-container">
                 <div className="inicio">
                     <a href="" className="header-a">
@@ -28,8 +30,8 @@ export default function Header() {
                     <Plus size={21} id="icons" />
                 </div>
                 <div className="side-buttons">
-                    <button>Playlists</button>
-                    <button>Artists</button>
+                    <Button name="Playlists" />
+                    <Button name="Artists" />
                 </div>
                 <div className="playlist">
                     <div className="search">
@@ -82,8 +84,24 @@ export default function Header() {
                                   ltype="Playlist"
                                   user="tiago"
                         />
+                        <Playlist img="src/assets/img1.png"
+                                  name="Chill"
+                                  ltype="Playlist"
+                                  user="tiago"
+                        />
+                        <Playlist img="src/assets/img1.png"
+                                  name="Chill"
+                                  ltype="Playlist"
+                                  user="tiago"
+                        />
+                        <Playlist img="src/assets/img1.png"
+                                  name="Chill"
+                                  ltype="Playlist"
+                                  user="tiago"
+                        />
                     </div>
                 </div>
+            </div>
             </div>
         </>
 

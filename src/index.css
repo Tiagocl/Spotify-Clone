@@ -2,18 +2,26 @@
 
 body {
   margin: 10px;
+  margin-bottom: 0;
   background-color: black;
   font-family: "Gotham SSm A", "Gotham SSm B", "Helvatica Neue";
-  
 }
 
+.page {
+  display: flex;
+  gap: 10px;
+}
+
+.side-container {
+  width: 385px;
+}
 
 .search-container {
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   padding: 20px;
-  max-width: 385px;
+  
   height: 75px; /* Ensures minimum height */
   margin-bottom: 10px;
   background-color: #121212;
@@ -27,8 +35,8 @@ body {
   gap: 10px;
   flex: 1;
   
-  max-width: 425px;
-  height: calc(100vh - 215px);
+  
+  height: calc(100vh - 225px);
   margin-bottom: 10px;
   background-color: #121212;
   padding-top: 15px;
@@ -111,6 +119,8 @@ body {
 }
 
 .side-buttons {
+  display: flex;
+  gap: 10px;
   padding-left: 20px;
 }
 .side-buttons button {
@@ -274,3 +284,81 @@ body {
 }
 
 
+.play-container {
+  width: 100%;
+  margin: 0;
+  height: 12vh;
+  background-color: #000000 ;
+}
+
+.play-container h1 {
+  margin: 0;
+  color: white;
+  margin-top: 2px;
+}
+
+.music-container {
+  background: rgb(34,34,34);
+background: linear-gradient(183deg, rgba(34,34,34,1) 0%, rgba(21,21,21,1) 31%, rgba(18,18,18,1) 100%);
+  flex-grow: 1;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+#less-icon,#pro-icon {
+  color: #BDADA8
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icon-div,.bell,.people,.pro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #131313;
+  border-radius: 50px;
+  border: none;
+  width: 35px;
+  height: 35px;
+}
+
+.bell:hover #pro-icon ,.people:hover #pro-icon,.pro:hover #pro-icon {
+  transform: scale(1.1);
+  color: #FFFFFF;
+}
+
+.bell:hover,.people:hover,.pro:hover {
+  transform: scale(1.1);
+  color: #FFFFFF;
+}
+
+.profile-icons {
+  display: flex;
+  gap: 20px;
+}
+
+.categories {
+  display: flex;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.categories button {
+  font-family: inherit;
+  font-size: 0.75rem;
+  border: none;
+  border-radius: 20px;
+  background-color: #2E2E2E;
+  color: #FFFFFF;
+  padding: 10px 15px;
+  transition: background-color 0.3s;
+
+}
+
+.categories button:hover {
+  background-color: #353535;
+}
