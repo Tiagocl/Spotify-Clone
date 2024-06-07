@@ -1,7 +1,7 @@
 import { Dot} from 'lucide-react';
 import PropTypes from 'prop-types';
 
-export default function Playlist(props) {
+export default function PlaylistSide(props) {
 
     return(
         <>
@@ -25,7 +25,7 @@ export default function Playlist(props) {
 }
 
 
-Playlist.propTypes= {
+PlaylistSide.propTypes= {
     img: PropTypes.string,
     name: PropTypes.string,
     ltype: PropTypes.string,

@@ -1,5 +1,6 @@
 import {ChevronLeft,Bell,Users,CircleUserRound } from 'lucide-react';
 import Button from './Button';
+import PlaylistMain from './PlaylistMain';
 import React, {useState} from 'react';
 
 
@@ -46,7 +47,27 @@ export default function MusicComponent() {
                 isActive={activeButton === "Podcasts"}
                 onClick={() => handleButtonClick("Podcasts")}
             />
-        </div>
+            </div>
+            <div className="playlist-main">
+            <PlaylistMain img="src/assets/img1.png"
+                                  name="Chill"
+                                  
+                        />
+            <PlaylistMain img="src/assets/img1.png"
+                                  name="Chill"
+                    
+            />
+            <PlaylistMain img="src/assets/img1.png"
+                                  name="Chill"
+                    
+            />
+            <PlaylistMain img="src/assets/img1.png"
+                                  name="Chill"
+                    
+            />
+            
+            </div>
+        
         </div>
     )
 }

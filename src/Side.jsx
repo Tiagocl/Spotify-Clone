@@ -1,6 +1,7 @@
 import { Home, Search, Library, Plus, List } from 'lucide-react';
-import Playlist from './Playlist';
+import PlaylistSide from './PlaylistSide';
 import Button from './Button';
+
 export default function Header() {
     return (
 
@@ -44,57 +45,57 @@ export default function Header() {
                         </div>
                     </div>
                     <div className="list-play">
-                        <Playlist img="src/assets/img1.png"
+                        <PlaylistSide img="src/assets/img1.png"
                                   name="Chill"
                                   ltype="Playlist"
                                   user="tiago"
                         />
-                        <Playlist img="src/assets/img1.png"
+                        <PlaylistSide img="src/assets/img1.png"
                                   name="Chill"
                                   ltype="Playlist"
                                   user="tiago"
                         />
-                        <Playlist img="src/assets/img1.png"
+                        <PlaylistSide img="src/assets/img1.png"
                                   name="Chill"
                                   ltype="Playlist"
                                   user="tiago"
                         />
-                        <Playlist img="src/assets/img1.png"
+                        <PlaylistSide img="src/assets/img1.png"
                                   name="Chill"
                                   ltype="Playlist"
                                   user="tiago"
                         />
-                        <Playlist img="src/assets/img1.png"
+                        <PlaylistSide img="src/assets/img1.png"
                                   name="Chill"
                                   ltype="Playlist"
                                   user="tiago"
                         />
-                        <Playlist img="src/assets/img1.png"
+                        <PlaylistSide img="src/assets/img1.png"
                                   name="Chill"
                                   ltype="Playlist"
                                   user="tiago"
                         />
-                        <Playlist img="src/assets/img1.png"
+                        <PlaylistSide img="src/assets/img1.png"
                                   name="Chill"
                                   ltype="Playlist"
                                   user="tiago"
                         />
-                        <Playlist img="src/assets/img1.png"
+                        <PlaylistSide img="src/assets/img1.png"
                                   name="Chill"
                                   ltype="Playlist"
                                   user="tiago"
                         />
-                        <Playlist img="src/assets/img1.png"
+                        <PlaylistSide img="src/assets/img1.png"
                                   name="Chill"
                                   ltype="Playlist"
                                   user="tiago"
                         />
-                        <Playlist img="src/assets/img1.png"
+                        <PlaylistSide img="src/assets/img1.png"
                                   name="Chill"
                                   ltype="Playlist"
                                   user="tiago"
                         />
-                        <Playlist img="src/assets/img1.png"
+                        <PlaylistSide img="src/assets/img1.png"
                                   name="Chill"
                                   ltype="Playlist"
                                   user="tiago"
