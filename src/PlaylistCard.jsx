@@ -5,10 +5,10 @@ export default function PlaylistCard(props) {
     const [hoverable, isHovered] = useHover((hovered) => (
         <div className="card">
             <div className={`card-img ${hovered ? 'hovered' : ''}`}
-            style={{ position: hovered ? 'relative' : 'static' }}>
+            >
                 <img src={props.img} alt="Playlist image" />
-                <div className={`card-play ${hovered ? 'show' : ''}`}>
-                    <i id="play-icon" className="bi bi-play-fill"></i>
+                <div className="card-play">
+                    <i id="play-icon-card" className="bi bi-play-fill"></i>
                 </div>
             </div>
             <div className="text-card">
