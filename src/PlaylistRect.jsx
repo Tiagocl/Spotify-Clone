@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useHover } from 'react-use';
 
-export default function PlaylistMain(props) {
+export default function PlaylistRect(props) {
     // Use useHover to track hover state
     const [hoverable, isHovered] = useHover((hovered) => (
-
-        <div className="main-playlist-container">
+        <div className="main-playlist-container" onClick={props.onClick}>
             <div className="img-name">
                 <div className="img">
                     <img src={props.img} alt="Playlist Image" />
@@ -18,8 +17,7 @@ export default function PlaylistMain(props) {
             </div>
             {hovered && (
                 <div className="lib">
-                    <i id="play-icon" class="bi bi-play-fill"></i>
-
+                    <i id="play-icon" className="bi bi-play-fill"></i>
                 </div>
             )}
         </div>
@@ -28,8 +26,8 @@ export default function PlaylistMain(props) {
     return hoverable;
 }
 
-PlaylistMain.propTypes = {
+PlaylistRect.propTypes = {
     img: PropTypes.string,
     name: PropTypes.string,
-    
-}
+    onClick: PropTypes.func, // Added the onClick prop type definition
+};

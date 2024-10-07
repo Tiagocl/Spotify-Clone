@@ -1,20 +1,64 @@
 @import './src/fonts.css';
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
 
+/* To remove default body margins */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+    /* Apply border-box to include padding in element width/height */
+}
 body {
   margin: 10px;
   margin-bottom: 0;
   background-color: black;
   font-family: "Gotham SSm A", "Gotham SSm B", "Helvatica Neue";
+  overflow: hidden;
 }
 
+
+/* General page container */
 .page {
-  display: flex;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: 415px 1fr;  /* Sidebar has a fixed width, the rest takes remaining space */
+  grid-template-areas: 
+      "side main";  /* Define the grid layout areas */
+  height: 87vh;   /* Full viewport height */
+  width: 100vw;   /* Full viewport width */
+  overflow: hidden; /* Prevent scrolling issues */
+  gap: 10px;      /* Add some space between the columns */
 }
 
-.side-container {
-  min-width: 415px;
+/* Sidebar styling */
+.side {
+  grid-area: side;        
+  background-color: #121212; 
+  color: #ffffff;           
+  padding: 20px;
+  overflow-y: auto;       
+}
+
+/* Main content area styling */
+.music-content {
+  grid-area: main;                          
+  
+  position: relative;
+  background-color: #121212;
+  padding: 0 0 40px 0;
+  height: calc(100vh - 115px);
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+
+/* Example styling for Play component */
+.play {
+  position: fixed;   /* Keep Play component at a fixed position if needed */
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;      /* Ensure Play button is above other elements */
 }
 
 .search-container {
@@ -38,7 +82,7 @@ body {
   flex: 1;
 
 
-  height: calc(100vh - 225px);
+  height: calc(100vh - 216px);
   margin-bottom: 10px;
   background-color: #121212;
   padding-top: 15px;
@@ -311,18 +355,7 @@ body {
   margin-top: 2px;
 }
 
-.music-container {
-  position: relative;
-  background-color: #121212;
-  /* background: linear-gradient(183deg, rgba(34, 34, 34, 1) 0%, rgba(21, 21, 21, 1) 31%, rgba(18, 18, 18, 1) 100%); */
-  flex-grow: 1;
-  
-  border-radius: 10px;
-  padding: 0 0 40px 0;
-  height: calc(100vh - 125px);
-  overflow-y: scroll;
 
-}
 
 #less-icon,
 #pro-icon {
