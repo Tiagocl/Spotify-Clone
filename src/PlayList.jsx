@@ -13,9 +13,9 @@ export default function Playlist() {
             description: 'Chill music for relaxing',
             img: img1,
             tracks: [
-                { id:1, title: 'Track 1 - Calm Waves', artist: 'Artist 1' },
-                { id:2, title: 'Track 2 - Soft Wind', artist: 'Artist 2' },
-                { id:3, title: 'Track 3 - Quiet Forest', artist: 'Artist 3' },  
+                { id:1,album:img1, title: 'EARQUAKE', artist: 'Artist 1' },
+                { id:2,album:img1, title: 'Track 2 - Soft Wind', artist: 'Artist 2' },
+                { id:3,album:img1, title: 'Track 3 - Quiet Forest', artist: 'Artist 3' },  
             ],
         },
         2: {
@@ -23,9 +23,9 @@ export default function Playlist() {
             description: 'Music for dancing and having fun',
             img: img1,
             tracks: [
-                { id:1, title: 'Track 1 - Dance Floor', artist: 'Artist 1' },
-                { id:2, title: 'Track 2 - Party Time', artist: 'Artist 2' },
-                { id:3, title: 'Track 3 - Celebration', artist: 'Artist 3' },  
+                { id:1,album:img1,  title: 'Track 1 - Dance Floor', artist: 'Artist 1' },
+                { id:2,album:img1, title: 'Track 2 - Party Time', artist: 'Artist 2' },
+                { id:3,album:img1, title: 'Track 3 - Celebration', artist: 'Artist 3' },  
             ],
         },
         3: {
@@ -33,9 +33,9 @@ export default function Playlist() {
             description: 'Music for concentrating',
             img: img1,
             tracks: [
-                { id:1, title: 'Track 1 - Deep Thoughts', artist: 'Artist 1' },
-                { id:2, title: 'Track 2 - Brain Power', artist: 'Artist 2' },
-                { id:3, title: 'Track 3 - Study Time', artist: 'Artist 3' },  
+                { id:1,album:img1, title: 'Track 1 - Deep Thoughts', artist: 'Artist 1' },
+                { id:2,album: img1, title: 'Track 2 - Brain Power', artist: 'Artist 2' },
+                { id:3,album:img1, title: 'Track 3 - Study Time', artist: 'Artist 3' },  
             ],
         },
         4: {
@@ -43,9 +43,9 @@ export default function Playlist() {
             description: 'Music for exercising',
             img: img1,
             tracks: [
-                { id:1, title: 'Track 1 - Warm Up', artist: 'Artist 1' },
-                { id:2, title: 'Track 2 - Cardio', artist: 'Artist 2' },
-                { id:3, title: 'Track 3 - Cool Down', artist: 'Artist 3' },  
+                { id:1, album: img1, title: 'Track 1 - Warm Up', artist: 'Artist 1' },
+                { id:2, album: img1, title: 'Track 2 - Cardio', artist: 'Artist 2' },
+                { id:3, album: img1, title: 'Track 3 - Cool Down', artist: 'Artist 3' },  
             ],
         },
         };
@@ -106,12 +106,24 @@ export default function Playlist() {
                     <div className="play-border">
 
                     </div>
-    
-                <h2>Tracks:</h2>
-                <ul>
+
+                <ul id="play-ul">
                     {playlist.tracks.map((track) => (
                         <li key={track.id}>
-                            <strong>{track.title}</strong> - {track.artist}
+                            <div className="track">
+                            <div className="id">
+                                <span>{track.id}</span>
+                            </div>
+                            <div className="track-part">
+                                <div className="track-img">
+                                    <img src={track.album} alt="" />
+                                </div>
+                                <div className="track-name">
+                                    <span>{track.title}</span>
+                                    <span>{track.artist}</span>
+                                </div>
+                                </div>
+                                </div>
                         </li>
                     ))}
                 </ul>

@@ -776,3 +776,41 @@ body {
   align-items: center;
   gap: 10px;
 }
+
+#play-ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+#play-ul li {
+  margin-bottom: 20px;
+}
+
+.track .track-part .track-img {
+  border-radius: 5px;
+  height: 40px;
+  width: 40px;
+  overflow: hidden;
+}
+
+.track .track-part .track-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.track .id {
+  align-self: center;
+}
+
+.track .track-part {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
