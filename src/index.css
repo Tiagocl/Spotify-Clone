@@ -18,7 +18,7 @@ body {
 
 .page {
   display: grid;
-  grid-template-columns: 10px 1fr;  
+  grid-template-columns: 415px 1fr;  
   grid-template-areas: 
       "side main";  
   height: 87vh;   
@@ -753,9 +753,13 @@ body {
   transform: scale(1.02);
 }
 
+.track-list {
+  margin: 0 40px 0 20px;
+}
+
 .track-list .little-header-play {
   font-family: inherit;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   font-weight: 500;
   color: #A7A7A7;
   display: flex;
@@ -767,15 +771,35 @@ body {
 .play-border {
   margin-top: 5px;
   border-bottom:1px #A7A7A7 solid;
-  transform: scaleY(0.3);
+  transform: scaleY(0.2);
 }
 
 .track-list .little-header-play .hashtag {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
+  font-size: 0.8rem;
 }
+
+.track-list .little-header-play .hashtag,
+.track-list .little-header-play .album,
+.track-list .little-header-play .added,
+.track-list .little-header-play .date-added {
+  font-size: 0.85rem;
+}
+
+
+
+ .track-list .little-header-play .album {
+  position: relative;
+  left: 95px;
+}
+
+ .track-list .little-header-play .added {
+  position: relative;
+  left: 32px;
+}  
 
 #play-ul {
   list-style-type: none;
@@ -807,10 +831,49 @@ body {
 
 .track .id {
   align-self: center;
+  color: #A7A7A7;
 }
 
 .track .track-part {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
+}
+
+.track .track-part .track-name {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.track .track-part .track-name span:nth-child(2){
+  font-family: "Gotham SSm A", "Gotham SSm B", "Helvatica Neue";
+  color: #A7A7A7;
+  font-size: 0.85rem;
+}
+
+@media screen and (max-width:1600px) {
+  .date-added {
+    display: none;
+  }
+  .track-line .added-date {
+    display: none;
+  }
+}
+
+.track-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 40px 0 20px;
+}
+
+
+.track-line .album,
+.track-line .added,
+.track-line .added-date,
+.track-line .time {
+  font-size: 0.85rem;
+  color: #A7A7A7;
+  
 }
