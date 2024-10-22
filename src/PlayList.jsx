@@ -1,26 +1,20 @@
 import { useParams } from 'react-router-dom';
-import React from 'react';
+import React, { useState } from 'react';
 import img1 from './assets/img1.png';
-import { Shuffle, CirclePlus, CircleArrowDown, Ellipsis, Search, TextQuote, Clock3 } from 'lucide-react';
+import { Shuffle, CirclePlus, CircleArrowDown, Ellipsis, Search, TextQuote, Clock3, Play } from 'lucide-react'; // Import Play icon
 
 export default function Playlist() {
-    const { playlistId } = useParams(); //extract playlist ID from the URL
+    const { playlistId } = useParams(); // Extract playlist ID from the URL
 
-
-    const platlistData = {
+    const playlistData = {
         1: {
             name: 'Chill Hits',
             description: 'Chill music for relaxing',
             img: img1,
             tracks: [
-                { id: 1, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: "18 Abril 2024", time: '3:10' },
-                { id: 2, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: "18 Abril 2024", time: '3:10' },
-                { id: 3, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: "18 Abril 2024", time: '3:10' },
-                { id: 3, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: "18 Abril 2024", time: '3:10' },
-                { id: 3, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: "18 Abril 2024", time: '3:10' },
-                { id: 3, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: "18 Abril 2024", time: '3:10' },
-                { id: 3, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: "18 Abril 2024", time: '3:10' },
-                { id: 3, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: "18 Abril 2024", time: '3:10' },
+                { id: 1, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: '18 Abril 2024', time: '3:10' },
+                { id: 2, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: '18 Abril 2024', time: '3:10' },
+                { id: 3, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: '18 Abril 2024', time: '3:10' },
             ],
         },
         2: {
@@ -28,9 +22,8 @@ export default function Playlist() {
             description: 'Music for dancing and having fun',
             img: img1,
             tracks: [
-                { id: 1, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: "18 Abril 2024", time: '3:10' },
-                { id: 2, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: "18 Abril 2024", time: '3:10' },
-                { id: 3, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: "18 Abril 2024", time: '3:10' },
+                { id: 1, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: '18 Abril 2024', time: '3:10' },
+                { id: 2, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: '18 Abril 2024', time: '3:10' },
             ],
         },
         3: {
@@ -55,12 +48,22 @@ export default function Playlist() {
         },
     };
 
-    const playlist = platlistData[playlistId];
+    const playlist = playlistData[playlistId];
 
-    //handle case if playlist is not found
+    // Handle case if playlist is not found
     if (!playlist) {
         return <div>Playlist not found</div>;
     }
+
+    const [hoveredTrack, setHoveredTrack] = useState(null); // State to track which track is hovered
+
+    const handleMouseEnter = (trackId) => {
+        setHoveredTrack(trackId);
+    };
+
+    const handleMouseLeave = () => {
+        setHoveredTrack(null);
+    };
 
     return (
         <div className="playlist-page">
@@ -111,18 +114,26 @@ export default function Playlist() {
                         <Clock3 size={20} id="clock-icon" />
                     </div>
                 </div>
-                </div>
-                <div className="play-border">
+            </div>
+            <div className="play-border"></div>
 
-                </div>
-
-                <ul id="play-ul">
-                    {playlist.tracks.map((track) => (
-                        <li key={track.id}>
-                            <div className="track-line">
+            <div className="list">
+                {playlist.tracks.map((track) => (
+                    <div
+                        className="list-each"
+                        key={track.id}
+                        onMouseEnter={() => handleMouseEnter(track.id)}
+                        onMouseLeave={handleMouseLeave}
+                    >
+                        <div className="track-line">
                             <div className="track">
                                 <div className="id">
-                                    <span>{track.id}</span>
+                                    {/* Show Play icon if hovered, otherwise show track.id */}
+                                    {hoveredTrack === track.id ? (
+                                        <i id="play-icon" className="bi bi-play-fill"></i>
+                                    ) : (
+                                        <span>{track.id}</span>
+                                    )}
                                 </div>
                                 <div className="track-part">
                                     <div className="track-img">
@@ -146,11 +157,10 @@ export default function Playlist() {
                             <div className="time">
                                 <span>{track.time}</span>
                             </div>
-                            </div>
-                        </li>
-                    ))}
-                </ul>
-            
+                        </div>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }

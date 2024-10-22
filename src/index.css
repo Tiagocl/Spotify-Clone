@@ -769,7 +769,7 @@ body {
 }
 
 .play-border {
-  margin-top: 5px;
+  margin: 5px 0 20px 0;
   border-bottom:1px #A7A7A7 solid;
   transform: scaleY(0.2);
 }
@@ -801,14 +801,6 @@ body {
   left: 32px;
 }  
 
-#play-ul {
-  list-style-type: none;
-  padding-left: 0;
-}
-
-#play-ul li {
-  margin-bottom: 20px;
-}
 
 .track .track-part .track-img {
   border-radius: 5px;
@@ -865,9 +857,15 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 40px 0 20px;
+  margin: 0 20px 0 0px;
+  padding: 8px 20px;
+ 
 }
 
+.track-line:hover  {
+  background-color: #2A2A2A;
+  border-radius: 5px;
+}
 
 .track-line .album,
 .track-line .added,
@@ -876,4 +874,24 @@ body {
   font-size: 0.85rem;
   color: #A7A7A7;
   
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.login-container button{
+  background-color: #1FDF64;
+  border: none;
+  width: 150px;
+  height: 50px;
+  border-radius: 5px;
+}
+
+.login-container a {
+  text-decoration: none;
+  color: black;
 }
