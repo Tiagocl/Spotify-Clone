@@ -1,8 +1,17 @@
 import { Home, Search, Library, Plus, List } from 'lucide-react';
 import PlaylistSide from './PlaylistSide';
 import Button from './Button';
+import { useNavigate } from 'react-router-dom';
 
 export default function Header() {
+
+    const navigate = useNavigate();
+    
+
+    function handleSearchClick() {
+        navigate(`/search`)
+        console.log('clicked search')
+    }
     return (
 
         <>
@@ -14,11 +23,10 @@ export default function Header() {
                         Home
                     </a>
                 </div>
-                <div className="procurar">
-                    <a href="" className='header-a'>
+                <div className="procurar"
+                onClick={() => handleSearchClick()}>
                         <Search size={25} id="icons" />
-                        Search
-                    </a>
+                        <span>Search</span>
                 </div>
             </div>
 

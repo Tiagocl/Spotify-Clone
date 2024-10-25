@@ -5,6 +5,7 @@ import Play from "./Play"
 import MusicComponent from "./MusicComponent"
 import Playlist from './PlayList';
 import useAuth from './useAuth';
+import Search from './Search';
 
 
 export default function MainPage({code}) {
@@ -17,6 +18,7 @@ export default function MainPage({code}) {
          <Routes>
            {/* Default route, shows the main music component */}
            <Route path="/" element={<MusicComponent />} />
+           <Route path="/search" element={<Search/>} />
            <Route path="/playlist/:playlistId" element={<Playlist />} />
          </Routes>
        </div>

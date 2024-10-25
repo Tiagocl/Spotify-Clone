@@ -104,7 +104,34 @@ body {
   color: #FFFFFF;
 }
 
-.procurar:hover a,
+.procurar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 25px;
+  color: #A7A7A7;
+  font-weight: 700;
+  font-size: 0.90rem;
+  transition: color 0.3s;
+  padding: 10px;
+  padding-left: 0;
+  cursor: pointer;
+}
+
+
+.header-a {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  text-decoration: none;
+  padding: 10px;
+  padding-left: 0;
+  color: #A7A7A7;
+  transition: color 0.3s;
+  font-size: 0.90rem;
+  font-weight: 700;
+}
+.procurar:hover ,
 .procurar:hover #icons {
   color: #FFFFFF;
 }
@@ -129,18 +156,6 @@ body {
   color: #FFFFFF;
 }
 
-.header-a {
-  display: flex;
-  align-items: center;
-  gap: 25px;
-  text-decoration: none;
-  padding: 10px;
-  padding-left: 0;
-  color: #A7A7A7;
-  transition: color 0.3s;
-  font-size: 0.90rem;
-  font-weight: 700;
-}
 
 .lib-a {
   display: flex;
@@ -894,4 +909,17 @@ body {
 .login-container a {
   text-decoration: none;
   color: black;
+}
+
+
+.searchresult-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin: 8px;
+}
+
+.search-container img {
+  height: 64px;
+  width: 64px;
 }

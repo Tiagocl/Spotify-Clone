@@ -15,6 +15,10 @@ export default function Playlist() {
                 { id: 1, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: '18 Abril 2024', time: '3:10' },
                 { id: 2, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: '18 Abril 2024', time: '3:10' },
                 { id: 3, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: '18 Abril 2024', time: '3:10' },
+                { id: 3, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: '18 Abril 2024', time: '3:10' },
+                { id: 3, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: '18 Abril 2024', time: '3:10' },
+                { id: 3, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: '18 Abril 2024', time: '3:10' },
+                { id: 3, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: '18 Abril 2024', time: '3:10' },
             ],
         },
         2: {
