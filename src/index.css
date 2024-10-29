@@ -912,14 +912,147 @@ body {
 }
 
 
+
 .searchresult-container {
   display: flex;
   align-items: center;
+  padding: 9px;
+  gap: 10px;
+  width: 100%;
   cursor: pointer;
-  margin: 8px;
+  color: #ffffff; /* Adjust for light/dark theme */
 }
 
-.search-container img {
-  height: 64px;
-  width: 64px;
+.searchresult-container:first-of-type {
+  margin-top: 10px;
+}
+
+.album-art {
+  width: 40px; /* Adjust as needed */
+  height: 40px;
+  object-fit: cover;
+  border-radius: 4px; /* Optional */
+}
+
+.track-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; /* Takes up the remaining width */
+}
+
+.track-title {
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+.title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.artist {
+  font-size: 14px;
+  color: #b3b3b3; /* Subtle color for the artist name */
+}
+
+.duration {
+   /* Adjust as needed */
+  position: relative;
+  right: 45px;
+  font-size: 14px;
+  color: #b3b3b3;
+}
+
+.song-results {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  gap: 10px;
+}
+
+
+
+/* Container for the top search result */
+.topsearch-container {
+  position: relative;
+  width: 400px;
+  height: 230px;
+  background-color:  #181818; /* Dark background for the container */
+  border-radius: 8px;
+  margin-left: 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0 0 20px;
+  margin-top: 10px;
+  box-sizing: border-box;
+  gap: 20px;
+  transition: background-color 0.25s ease;
+  
+}
+
+.topsearch-container:hover {
+  background-color: #282828; /* Slightly lighter background on hover */
+}
+
+.topsearch-container .title {
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: white;
+}
+
+.topsearch-container .track-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.top-img img {
+  width: 90px;
+  height: 90px;
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Adds shadow to the album image */
+}
+
+.top-search span {
+  color: white;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0 0 0 20px;
+}
+
+.topsearch-container .lib-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1FDF64;
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  bottom: 10px;
+  left: 340px;
+  opacity: 0;
+  transition: all 0.3s;
+  border-radius: 50%;
+}
+
+#play-icon {
+  font-size: 2rem;
+}
+
+.lib-top.hovered {
+  bottom: 20px;
+  opacity: 1;
+}
+
+.results {
+  flex: 1;
+}
+.results span {
+  color: white;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0 0 0 20px;
 }
