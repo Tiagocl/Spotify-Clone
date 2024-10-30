@@ -11,6 +11,7 @@ export default function SearchComponent({ accessToken }) { // Receive accessToke
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
+  
   function msToMinutesAndSeconds(ms) {
     const minutes = Math.floor(ms / 60000)
     const seconds = Math.floor((ms % 60000) / 1000)
