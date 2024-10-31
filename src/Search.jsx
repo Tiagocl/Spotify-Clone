@@ -74,7 +74,7 @@ export default function SearchComponent({ accessToken }) { // Receive accessToke
     </div>
       <div className="song-results">
         <div className="top-search">
-          <span>Top result</span>
+          {search && <span>Top Result</span> }
           <div className="topresult-container">
             {searchResults.slice(0,1).map(track => (
               <TopResultSearch track={track} key={track.uri} chooseTrack={chooseTrack}/>
@@ -83,7 +83,7 @@ export default function SearchComponent({ accessToken }) { // Receive accessToke
         </div>
       
     <div className="results">
-      <span>Songs</span>
+      {search && <span>Songs</span> }
       {searchResults.slice(0,4).map(track => (
         <SearchResults track={track} key={track.uri} chooseTrack={chooseTrack}/>
       ))}
