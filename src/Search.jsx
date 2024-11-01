@@ -32,13 +32,17 @@ export default function SearchComponent({ accessToken }) { // Receive accessToke
     if (!accessToken) return;
 
     let cancel = false;
-    spotifyApi.searchTracks(search)
-      .then(res => {
+    Promise.all([
+    spotifyApi.searchTracks(search),
+    spotifyApi.searchArtists(search)
+  ])
+      .then(([trackRes,artistsRes]) => {
         if (cancel) return;
-        console.log(res.body.tracks.items);
+        console.log(trackRes.body);
+         console.log(artistsRes.body);
         setSearchResults(
           
-          res.body.tracks.items.map(track => {
+          trackRes.body.tracks.items.map(track => {
             const smallestAlbumImage = track.album.images.reduce(
               (smallest, image) => {
                 return image.height < smallest.height ? image : smallest;
@@ -49,7 +53,7 @@ export default function SearchComponent({ accessToken }) { // Receive accessToke
               artist: track.artists[0].name,
               title: track.name,
               time: msToMinutesAndSeconds(track.duration_ms),
-              type: track.type,
+              type: 'Song',
               uri: track.uri,
               albumUrl: smallestAlbumImage.url
 
