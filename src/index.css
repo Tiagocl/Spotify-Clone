@@ -1052,6 +1052,7 @@ body {
   background-color:  #181818; /* Dark background for the container */
   border-radius: 8px;
   margin-left: 15px;
+  margin-bottom: 50px;
   display: flex;
   flex-direction: column;
   padding: 20px 0 0 20px;
@@ -1183,4 +1184,82 @@ body {
 
 .song-artist #dot-icon {
   color: #A7A7A7;
+}
+
+.artist-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+  position: relative;
+}
+
+.artist-container:hover {
+  background-color: #282828;
+  border-radius: 5px;
+}
+
+.artists-search {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+
+  margin: 20px;
+  margin-left: 10px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.artist-span {
+  color: white;
+  margin: 20px;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.artist-container .artist-img {
+  width: 170px;
+  height: 170px;
+}
+
+.artist-container .artist-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 100px;
+}
+
+.artist-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+.artist-info .artist-name {
+  color: white;
+  font-size: 0.95rem;
+}
+
+.artist-info .artist-type {
+  color: #A7A7A7;
+  font-size: 0.85rem;
+}
+
+.artist-container .lib-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1FDF64;
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  top: 140px;
+  left: 125px;
+  opacity: 0;
+  transition: all 0.3s;
+  border-radius: 50%;
+}
+
+.lib-top.artist-hovered {
+  top: 130px;
+  opacity: 1;
 }

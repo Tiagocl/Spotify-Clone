@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import SpotifyWebApi from 'spotify-web-api-node';
 import SearchResults from './SearchResults';
 import TopResultSearch from './TopResultSearch';
+import SearchArtist from './SearchArtist';
 
 const spotifyApi = new SpotifyWebApi({
   clientId: 'c671d3abceae4fe1aa7f5238e4c1ad59'
@@ -10,7 +11,7 @@ const spotifyApi = new SpotifyWebApi({
 export default function SearchComponent({ accessToken }) { // Receive accessToken as a prop
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-
+  const [searchArtists, setSearchArtists] = useState([]);
   
   function msToMinutesAndSeconds(ms) {
     const minutes = Math.floor(ms / 60000)
@@ -28,7 +29,11 @@ export default function SearchComponent({ accessToken }) { // Receive accessToke
   }, [accessToken]);
 
   useEffect(() => {
-    if (!search) return setSearchResults([]);
+    if (!search) {
+      setSearchResults([]);
+      setSearchArtists([]);
+      return;
+    } 
     if (!accessToken) return;
 
     let cancel = false;
@@ -58,8 +63,25 @@ export default function SearchComponent({ accessToken }) { // Receive accessToke
               albumUrl: smallestAlbumImage.url
 
             };
+          }),
+        );
+        setSearchArtists(
+          artistsRes.body.artists.items.map(artist => {
+            const smallesArtistImage = artist.images.reduce(
+              (smallest,image) => {
+                return image.height < smallest.height ? image : smallest;
+              },
+              artist.images[0]
+            );
+            return {
+              artist: artist.name,
+              type: 'Artist',
+              artistImage: smallesArtistImage.url,
+              uri: artist.uri,
+            }
           })
         );
+        
       })
       .catch(err => console.error('Spotify API search error:', err));
       
@@ -92,6 +114,13 @@ export default function SearchComponent({ accessToken }) { // Receive accessToke
         <SearchResults track={track} key={track.uri} chooseTrack={chooseTrack}/>
       ))}
     </div>
+    </div>
+    {search && <span className='artist-span'>Artists</span> }
+    <div className="artists-search">
+      
+      {searchArtists.slice(0,4).map(artist => (
+        <SearchArtist artist={artist} key={artist.uri} chooseTrack={chooseTrack}/>
+      ))}
     </div>
     </>
   );
