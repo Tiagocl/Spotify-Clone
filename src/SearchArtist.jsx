@@ -1,6 +1,6 @@
 import React from 'react'
 import {useHover} from 'react-use'
-export default function ({artist}) {
+export default function ({artist, choseTrack}) {
 
     const [hoverable, isHovered] = useHover((hovered) => (
     <div className='artist-container'>
@@ -11,7 +11,7 @@ export default function ({artist}) {
             <div className='artist-name'>{artist.artist}</div>
             <div className="artist-type">{artist.type}</div>
         </div>
-        <div className={`lib-top ${hovered ? 'artist-hovered' : '' }`}>
+        <div className={`lib-top ${hovered ? 'artist-hover' : '' }`}>
                     <i id="play-icon" className="bi bi-play-fill"></i>
                 </div> 
     </div>

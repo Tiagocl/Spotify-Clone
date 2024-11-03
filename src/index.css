@@ -896,20 +896,86 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  cursor: pointer;
 }
 
 .login-container button{
   background-color: #1FDF64;
   border: none;
-  width: 150px;
-  height: 50px;
+  width: 200px;
+  height: 60px;
   border-radius: 5px;
+  font-size: 1.2rem;
+  -webkit-animation: jello-horizontal 0.9s both;
+  animation: jello-horizontal 0.9s both;
 }
 
 .login-container a {
   text-decoration: none;
   color: black;
 }
+
+ @-webkit-keyframes jello-horizontal {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  30% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+            transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes jello-horizontal {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  30% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+            transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+
 
 
 
@@ -1126,6 +1192,14 @@ body {
   opacity: 1;
 }
 
+.lib-top.hovered:hover {
+  transform: scale(1.1);
+  background-color: #3BE477;
+  bottom: 20px;
+  opacity: 1;
+}
+
+
 .results {
   flex: 1;
 }
@@ -1192,6 +1266,8 @@ body {
   gap: 5px;
   padding: 10px;
   position: relative;
+  width: 170px;
+  margin-bottom: 30px;
 }
 
 .artist-container:hover {
@@ -1202,14 +1278,15 @@ body {
 .artists-search {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-
+  
   margin: 20px;
   margin-left: 10px;
-  box-sizing: border-box;
+  max-width: 800px;
   overflow: hidden;
 }
 
-.artist-span {
+
+.span {
   color: white;
   margin: 20px;
   font-size: 1.4rem;
@@ -1239,6 +1316,12 @@ body {
   font-size: 0.95rem;
 }
 
+.artist-info .artist-name:hover {
+  text-decoration: underline;
+  text-decoration-style: solid;
+  text-decoration-thickness: 1px;
+}
+
 .artist-info .artist-type {
   color: #A7A7A7;
   font-size: 0.85rem;
@@ -1259,7 +1342,116 @@ body {
   border-radius: 50%;
 }
 
-.lib-top.artist-hovered {
+.lib-top.artist-hover {
   top: 130px;
   opacity: 1;
+}
+
+
+.lib-top.artist-hover:hover {
+  transform: scale(1.1);
+  background-color: #3BE477;
+
+}
+
+.albums-search {
+  display: grid;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  
+  margin: 20px;
+  margin-left: 10px;
+  max-width: 800px;
+  overflow: hidden;
+}
+
+.album-container .album-img {
+  width: 170px;
+  height: 170px;
+}
+
+.album-container .album-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  
+}
+
+.album-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+  position: relative;
+  width: 170px;
+  margin-bottom: 30px;
+}
+
+.album-container:hover {
+  background-color: #282828;
+  border-radius: 5px;
+}
+
+.album-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.album-info .album-name {
+  color: white;
+  font-size: 0.95rem;
+}
+
+.album-info .album-name:hover {
+  text-decoration: underline;
+  text-decoration-style: solid;
+  text-decoration-thickness: 1px;
+}
+
+.album-info #dot-icon {
+  color: #A7A7A7;
+}
+
+.date-name {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+.album-info .album-date,
+.album-info .album-artist {
+  color: #A7A7A7;
+  font-size: 0.85rem;
+}
+
+.album-container .lib-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1FDF64;
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  top: 140px;
+  left: 120px;
+  opacity: 0;
+  transition: all 0.3s;
+  border-radius: 50%;
+}
+
+.lib-top.album-hover {
+  top: 120px;
+  opacity: 1;
+}
+
+.lib-top.album-hover:hover {
+  transform: scale(1.1);
+  background-color: #3BE477;
+}
+
+.album-info .album-name {
+
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

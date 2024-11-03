@@ -1,22 +1,21 @@
 import PropTypes from 'prop-types';
 import { useHover } from 'react-use';
 
-export default function PlaylistCard(props) {
+export default function PlaylistCard({ img, name, artists }) {
     const [hoverable, isHovered] = useHover((hovered) => (
         <div className="card">
-            <div className={`card-img ${hovered ? 'hovered' : ''}`}
-            >
-                <img src={props.img} alt="Playlist image" />
+            <div className={`card-img ${hovered ? 'hovered' : ''}`}>
+                <img src={img} alt="Playlist image" />
                 <div className="card-play">
                     <i id="play-icon-card" className="bi bi-play-fill"></i>
                 </div>
             </div>
             <div className="text-card">
                 <div className="card-name">
-                    <span>{props.name}</span>
+                    <span>{name}</span>
                 </div>
                 <div className="artists">
-                    <span>{props.artists}</span>
+                    <span>{artists}</span>
                 </div>
             </div>
         </div>
