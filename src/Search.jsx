@@ -4,6 +4,8 @@ import SearchResults from './SearchResults';
 import TopResultSearch from './TopResultSearch';
 import SearchArtist from './SearchArtist';
 import SearchAlbum from './SearchAlbum';
+import SearchPlaylists from './SearchPlaylists';
+import {Search} from 'lucide-react'
 
 const spotifyApi = new SpotifyWebApi({
   clientId: 'c671d3abceae4fe1aa7f5238e4c1ad59'
@@ -14,6 +16,8 @@ export default function SearchComponent({ accessToken }) { // Receive accessToke
   const [searchResults, setSearchResults] = useState([]);
   const [searchArtists, setSearchArtists] = useState([]);
   const [searchAlbum, setSearchAlbums] = useState([]);
+  const [searchPlaylists, setSearchPlaylists] = useState([]);
+  
   
   function msToMinutesAndSeconds(ms) {
     const minutes = Math.floor(ms / 60000)
@@ -24,7 +28,7 @@ export default function SearchComponent({ accessToken }) { // Receive accessToke
 
   function getYear(date) {
     const newDate = date.split('-')[0];
-    console.log(newDate);
+
     return newDate;
   }
 
@@ -41,6 +45,7 @@ export default function SearchComponent({ accessToken }) { // Receive accessToke
       setSearchResults([]);
       setSearchArtists([]);
       setSearchAlbums([]);
+      setSearchPlaylists([]);
       return;
     } 
     if (!accessToken) return;
@@ -49,15 +54,14 @@ export default function SearchComponent({ accessToken }) { // Receive accessToke
     Promise.all([
     spotifyApi.searchTracks(search),
     spotifyApi.searchArtists(search),
+    spotifyApi.searchPlaylists(search),
     
   ])
-      .then(async([trackRes,artistsRes]) => {
+      .then(async([trackRes,artistsRes,playlistsRes]) => {
         if (cancel) return;
-        console.log(trackRes.body);
-         console.log(artistsRes.body);
-        setSearchResults(
+         console.log(playlistsRes.body);
           
-          trackRes.body.tracks.items.map(track => {
+          const songsData = trackRes.body.tracks.items.map(track => {
             const biggestAlbumImage = track.album.images.reduce(
               (biggest, image) => {
                 return image.height > biggest.height ? image : biggest;
@@ -73,11 +77,11 @@ export default function SearchComponent({ accessToken }) { // Receive accessToke
               albumUrl: biggestAlbumImage.url
 
             };
-          }),
-        );
+          })
+          setSearchResults(songsData);
        
         const artistsData =  artistsRes.body.artists.items.map(artist => {
-            const smallesArtistImage = artist.images.reduce(
+            const biggestArtistImage = artist.images.reduce(
               (biggest,image) => {
                 return image.height > biggest.height ? image : biggest;
               },
@@ -86,21 +90,36 @@ export default function SearchComponent({ accessToken }) { // Receive accessToke
             return {
               artist: artist.name,
               type: 'Artist',
-              artistImage: smallesArtistImage.url,
+              artistImage: biggestArtistImage.url,
               uri: artist.uri,
               id: artist.id
             }
           })
           setSearchArtists(artistsData);
 
+          
+          const playlistData = playlistsRes.body.playlists.items.map(playlist => {
+            const biggestPlaylistImage = playlist.images.reduce(
+              (biggest,image) => {
+                return image.height > biggest.height ? image : biggest;
+              },
+              playlist.images[0]
+            );
+            return {
+              name: playlist.name,
+              owner: 'By ' + playlist.owner.display_name,
+              playlistImage: biggestPlaylistImage.url,
+              uri: playlist.uri
+            }
+          })
+          setSearchPlaylists(playlistData);
+
           const ArtistId = artistsData[0].id;
           const ArtistName = artistsData[0].artist;
-          console.log(ArtistId)
-          console.log(ArtistName)
           if(ArtistId) {
             const albumRes = await spotifyApi.getArtistAlbums(ArtistId);
             if (!cancel) {
-              console.log(albumRes.body.items);
+              
               setSearchAlbums(albumRes.body.items.map(album => {
                 const biggestAlbumImage = album.images.reduce(
                   (biggest,image) => {
@@ -130,9 +149,10 @@ export default function SearchComponent({ accessToken }) { // Receive accessToke
   return (
     <>
     <div className="search-container">
+      <Search size={20} id="search-icon"/>
       <input 
         type="search"
-        placeholder="Search Songs/Artists"
+        placeholder="What do you want to listen to?"
         value={search}
         onChange={e => setSearch(e.target.value)}
         />
@@ -165,6 +185,13 @@ export default function SearchComponent({ accessToken }) { // Receive accessToke
     <div className="albums-search">
       {searchAlbum.slice(0,4).map(album => (
         <SearchAlbum album={album} key={album.uri} chooseTrack={chooseTrack}/>
+      ))}
+    </div>
+    {search && <span className='span'>Playlists</span> }
+    <div className="playlist-search">
+      
+      {searchPlaylists.slice(0,4).map(playlist => (
+        <SearchPlaylists playlist={playlist} key={playlist.uri} chooseTrack={chooseTrack}/>
       ))}
     </div>
     </>
