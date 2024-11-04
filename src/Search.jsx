@@ -148,7 +148,7 @@ export default function SearchComponent({ accessToken }) { // Receive accessToke
 
   return (
     <>
-    <div className="search-container">
+    <div className="searchi-container">
       <Search size={20} id="search-icon"/>
       <input 
         type="search"

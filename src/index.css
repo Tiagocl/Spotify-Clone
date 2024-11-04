@@ -1566,11 +1566,12 @@ body {
   text-overflow: ellipsis;
 }
 
-/* .playlist-info .playlist-name:hover {
+.playlist-info .playlist-name:hover {
   text-decoration: underline;
   text-decoration-style: solid;
   text-decoration-thickness: 1px;
-} */
+}
+
 
 .playlist-info .playlist-owner {
   color: #A7A7A7;
@@ -1603,11 +1604,12 @@ body {
 }
 
 
-.search-container {
+.searchi-container {
   position: relative;
-  padding-bottom: 0;
+  padding: 20px;
+  padding-bottom: 30px;
 }
-.search-container input {
+.searchi-container input {
   background-color: white;
   border: none;
   border-radius: 50px;
@@ -1620,11 +1622,11 @@ body {
   
 }
 
-.search-container input::placeholder {
+.searchi-container input::placeholder {
   color: black;
 }
 
-.search-container #search-icon {
+.searchi-container #search-icon {
   color: black;
   position: absolute;
   top: 28px;
