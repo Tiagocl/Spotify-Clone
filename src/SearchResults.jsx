@@ -11,7 +11,7 @@ export default function SearchResults({ track, chooseTrack }) {
   }
   return (
     <div className="searchresult-container" 
-         
+         onClick={handlePlay}
          onMouseEnter={() => setIsHovered(true)}
          onMouseLeave={() => setIsHovered(false)}>
 

@@ -3,11 +3,15 @@ import {useHover} from 'react-use'
 import {Dot} from 'lucide-react'
 
 export default function TopResultSearch({ track, chooseTrack }) {
-
+    
+    function handlePlay() {
+        chooseTrack(track)
+    }
     
 
     const [hoverable, isHovered] = useHover((hovered) => (
-        <div className="topsearch-container">
+        <div className="topsearch-container"
+        onClick={handlePlay}>
             <div className="top-img">
                 <img src={track.albumUrl} alt="" />
             </div>
@@ -22,7 +26,9 @@ export default function TopResultSearch({ track, chooseTrack }) {
                     </div>
                 </div>
                 
-                 <div className={`lib-top ${hovered ? 'hovered' : '' }`}>
+                 <div className={`lib-top ${hovered ? 'hovered' : '' }`}
+                 >
+                    
                     <i id="play-icon" className="bi bi-play-fill"></i>
                 </div> 
                 

@@ -11,12 +11,13 @@ const spotifyApi = new SpotifyWebApi({
   clientId: 'c671d3abceae4fe1aa7f5238e4c1ad59'
 });
 
-export default function SearchComponent({ accessToken }) { // Receive accessToken as a prop
+export default function SearchComponent({ accessToken, setPlayingTrack }) { // Receive accessToken as a prop
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [searchArtists, setSearchArtists] = useState([]);
   const [searchAlbum, setSearchAlbums] = useState([]);
   const [searchPlaylists, setSearchPlaylists] = useState([]);
+  
   
   
   function msToMinutesAndSeconds(ms) {
@@ -33,7 +34,8 @@ export default function SearchComponent({ accessToken }) { // Receive accessToke
   }
 
   function chooseTrack(track) {
-    setSearch("")
+    setPlayingTrack(track)
+    console.log("track",track)
   }
   useEffect(() => {
     if (!accessToken) return;

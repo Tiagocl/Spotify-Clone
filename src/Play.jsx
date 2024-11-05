@@ -1,7 +1,11 @@
-export default function Play() {
+import Player from "./Player";
+
+
+
+export default function Play({accessToken, playingTrack}) {
     return (
        <div className="play-container">
-        <h1>lol</h1>
+        <Player accessToken={accessToken} trackUri={playingTrack?.uri}/>
        </div>
     );
 }
