@@ -1,11 +1,17 @@
 import { ChevronLeft, Bell, Users, CircleUserRound } from 'lucide-react';
 import Button from './Button';
 import PlaylistRect from './PlaylistRect';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PlaylistCard from './PlaylistCard';
 import { useNavigate } from 'react-router-dom';
+import SpotifyWebApi from 'spotify-web-api-node';
 
-export default function MusicComponent() {
+
+const spotifyApi = new SpotifyWebApi({
+    clientId: 'c671d3abceae4fe1aa7f5238e4c1ad59'
+});
+
+export default function MusicComponent({accessToken}) {
     const navigate = useNavigate();
     const [activeButton, setActiveButton] = useState(null);
 
@@ -19,7 +25,27 @@ export default function MusicComponent() {
         console.log(activeButton);
     }
 
+    useEffect(() => {
+        if (!accessToken) return;
+        spotifyApi.setAccessToken(accessToken);
+    },[accessToken]);
+
+    useEffect(() => {
+        if (!accessToken) return;
+    
+        let cancel = false; // Not really necessary here since you are not using it in the API call
+        spotifyApi.getMe().then(me => {
+            if (!cancel) {
+                console.log(me); // Only log if not canceled
+            }
+        })
+        .catch(err => console.error('Spotify API access error', err)); 
+    
+        return () => { cancel = true; }; // Not really necessary for this case
+    }, [accessToken]);
+    
     return (
+
         <>
         <div className="fixed-container">
                 <div className="top">

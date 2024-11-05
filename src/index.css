@@ -132,6 +132,7 @@ body {
   transition: color 0.3s;
   font-size: 0.90rem;
   font-weight: 700;
+  cursor: pointer;
 }
 
 .header-a:hover,

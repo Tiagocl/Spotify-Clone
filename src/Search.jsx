@@ -57,11 +57,13 @@ export default function SearchComponent({ accessToken, setPlayingTrack }) { // R
     spotifyApi.searchTracks(search),
     spotifyApi.searchArtists(search),
     spotifyApi.searchPlaylists(search),
+    spotifyApi.getMe(),
     
   ])
-      .then(async([trackRes,artistsRes,playlistsRes]) => {
+      .then(async([trackRes,artistsRes,playlistsRes,Me]) => {
         if (cancel) return;
          console.log(playlistsRes.body);
+         console.log(Me.body);
           
           const songsData = trackRes.body.tracks.items.map(track => {
             const biggestAlbumImage = track.album.images.reduce(

@@ -24,7 +24,7 @@ export default function MainPage({ code }) {
           </Routes>
         </div>
       </div>
-      {accessToken && playingTrack && (
+      {accessToken &&  (
         
         <Play accessToken={accessToken} playingTrack={playingTrack} />
       )}
