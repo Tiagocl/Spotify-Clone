@@ -134,6 +134,7 @@ body {
   font-weight: 700;
 }
 
+.header-a:hover,
 .procurar:hover,
 .procurar:hover #icons {
   color: #FFFFFF;
@@ -513,7 +514,7 @@ body {
   gap: 5px;
 }
 
-#play-icon {
+.main-playlist-container #play-icon {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -583,6 +584,9 @@ body {
 
 
 .card-play {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #1FDF64;
   border-radius: 50%;
   width: 50px;
@@ -603,14 +607,13 @@ body {
 }
 
 
-#play-icon-card {
+.card #play-icon {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 25px;
-  padding-left: 2px;
-  padding-top: 13px;
+  justify-self: center;
+  font-size: 30px;
+  padding-left: 3px;
 }
+
 
 .card-img img {
   width: 100%;
@@ -1217,9 +1220,13 @@ body {
   opacity: 0;
   transition: all 0.3s;
   border-radius: 50%;
+  padding-left: 2px;
 }
 
-#play-icon {
+.topsearch-container #play-icon {
+  display: flex;
+  align-self: center;
+  justify-self: center;
   font-size: 2rem;
 }
 
@@ -1378,7 +1385,9 @@ body {
   font-size: 0.85rem;
 }
 
-.artist-container .lib-top {
+.artist-container .lib-top,
+.album-container .lib-top,
+.searchplaylist-container .lib-top{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1391,6 +1400,9 @@ body {
   opacity: 0;
   transition: all 0.3s;
   border-radius: 50%;
+  font-size: 1.8rem;
+  padding-left: 3px;
+  padding-bottom: 2px;
 }
 
 .lib-top.artist-hover {
@@ -1481,20 +1493,6 @@ body {
   font-size: 0.85rem;
 }
 
-.album-container .lib-top {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #1FDF64;
-  position: absolute;
-  width: 48px;
-  height: 48px;
-  top: 140px;
-  left: 120px;
-  opacity: 0;
-  transition: all 0.3s;
-  border-radius: 50%;
-}
 
 .lib-top.album-hover {
   top: 120px;
@@ -1576,21 +1574,6 @@ body {
 .playlist-info .playlist-owner {
   color: #A7A7A7;
   font-size: 0.85rem;
-}
-
-.searchplaylist-container .lib-top {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #1FDF64;
-  position: absolute;
-  width: 48px;
-  height: 48px;
-  top: 140px;
-  left: 120px;
-  opacity: 0;
-  transition: all 0.3s;
-  border-radius: 50%;
 }
 
 .lib-top.playlist-hover {

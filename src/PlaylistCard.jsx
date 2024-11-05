@@ -7,7 +7,7 @@ export default function PlaylistCard({ img, name, artists }) {
             <div className={`card-img ${hovered ? 'hovered' : ''}`}>
                 <img src={img} alt="Playlist image" />
                 <div className="card-play">
-                    <i id="play-icon-card" className="bi bi-play-fill"></i>
+                    <i id="play-icon" className="bi bi-play-fill"></i>
                 </div>
             </div>
             <div className="text-card">

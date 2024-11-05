@@ -12,16 +12,22 @@ export default function Header() {
         navigate(`/search`)
         console.log('clicked search')
     }
+
+    function handleHomeCLick() {
+        navigate(`/`)
+        console.log('clicked home')
+    }
     return (
 
         <>
         <div className="side-container">
             <div className="search-container">
                 <div className="inicio">
-                    <a href="" className="header-a">
+                    <div href="" className="header-a"
+                    onClick={() => handleHomeCLick()}>
                         <Home size={25} id="icons" />
-                        Home
-                    </a>
+                        <span>Home</span>
+                    </div>
                 </div>
                 <div className="procurar"
                 onClick={() => handleSearchClick()}>
