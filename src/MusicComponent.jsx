@@ -4,16 +4,12 @@ import PlaylistRect from './PlaylistRect';
 import React, { useEffect, useState } from 'react';
 import PlaylistCard from './PlaylistCard';
 import { useNavigate } from 'react-router-dom';
-import SpotifyWebApi from 'spotify-web-api-node';
+import spotifyApi from './SpotifyApi';
 
-
-const spotifyApi = new SpotifyWebApi({
-    clientId: 'c671d3abceae4fe1aa7f5238e4c1ad59'
-});
-
-export default function MusicComponent({accessToken}) {
+export default function MusicComponent({ accessToken }) {
     const navigate = useNavigate();
     const [activeButton, setActiveButton] = useState(null);
+    const [userName, setUserName] = useState(""); // Add state to store username
 
     function handlePlayListClick(id) {
         navigate(`/playlist/${id}`);
@@ -28,26 +24,33 @@ export default function MusicComponent({accessToken}) {
     useEffect(() => {
         if (!accessToken) return;
         spotifyApi.setAccessToken(accessToken);
-    },[accessToken]);
+    }, [accessToken]);
 
     useEffect(() => {
         if (!accessToken) return;
     
-        let cancel = false; // Not really necessary here since you are not using it in the API call
-        spotifyApi.getMe().then(me => {
-            if (!cancel) {
-                console.log(me); // Only log if not canceled
-            }
+        let cancel = false; 
+        Promise.all([
+        spotifyApi.getMe(),
+        spotifyApi.getMyRecentlyPlayedTracks({limit: 4}),
+        ])
+        .then(([me,recent]) => {
+            console.log(me.body);
+            console.log(recent.body);
+            if (cancel) return;
+
+            const fetchedUserName = me.body.display_name;
+            setUserName(fetchedUserName); 
+            console.log(fetchedUserName); 
         })
         .catch(err => console.error('Spotify API access error', err)); 
     
         return () => { cancel = true; }; // Not really necessary for this case
     }, [accessToken]);
-    
-    return (
 
+    return (
         <>
-        <div className="fixed-container">
+            <div className="fixed-container">
                 <div className="top">
                     <div className="icon-div">
                         <ChevronLeft size={25} id="less-icon" />
@@ -83,6 +86,7 @@ export default function MusicComponent({accessToken}) {
                     />
                 </div>
             </div>
+
             <div className="normal-container">
                 <div className="playlist-main">
                     <PlaylistRect
@@ -104,19 +108,20 @@ export default function MusicComponent({accessToken}) {
                         img="src/assets/img1.png"
                         name="Chill"
                         onClick={() => handlePlayListClick(4)}
-
                     />
-
                 </div>
+
                 <div className="card-container">
                     <div className="card-span">
-                        <span>Made For You</span>
+                        <span>Recently Played</span>
                     </div>
                     <div className="cards">
                         <PlaylistCard 
                             name="Daily Mix 1"
                             img="src/assets/img1.png"
                             artists="XXXTENTACION, Juice WRLD, Logic and more"
+                            recent= ""
+
                         />
                         <PlaylistCard 
                             name="Daily Mix 2"
@@ -133,14 +138,12 @@ export default function MusicComponent({accessToken}) {
                             img="src/assets/img1.png"
                             artists="Litrox, Alcool Club, Dillaz and more"
                         />
-
                     </div>
                 </div>
+
                 <div className="card-container">
                     <div className="card-span">
-                        <span>
-                            Recommended Stations
-                        </span>
+                        <span>Recommended Stations</span>
                         <div className="cards">
                             <PlaylistCard 
                                 name="Greg Ferreira Radio"
@@ -166,6 +169,6 @@ export default function MusicComponent({accessToken}) {
                     </div>
                 </div>
             </div>
-            </>
-    )
+        </>
+    );
 }

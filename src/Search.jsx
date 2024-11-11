@@ -6,10 +6,10 @@ import SearchArtist from './SearchArtist';
 import SearchAlbum from './SearchAlbum';
 import SearchPlaylists from './SearchPlaylists';
 import {Search} from 'lucide-react'
-
-const spotifyApi = new SpotifyWebApi({
-  clientId: 'c671d3abceae4fe1aa7f5238e4c1ad59'
-});
+import spotifyApi from './SpotifyApi';
+// const spotifyApi = new SpotifyWebApi({
+//   clientId: 'c671d3abceae4fe1aa7f5238e4c1ad59'
+// });
 
 export default function SearchComponent({ accessToken, setPlayingTrack }) { // Receive accessToken as a prop
   const [search, setSearch] = useState("");
