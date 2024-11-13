@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import React, { useState } from 'react';
 import img1 from './assets/img1.png';
-import { Shuffle, CirclePlus, CircleArrowDown, Ellipsis, Search, TextQuote, Clock3, Play } from 'lucide-react'; // Import Play icon
+import { Shuffle, CirclePlus, CircleArrowDown, Ellipsis, Search, TextQuote, Clock3, Play,ChevronLeft } from 'lucide-react'; // Import Play icon
 
 export default function Playlist() {
     const { playlistId } = useParams(); // Extract playlist ID from the URL
@@ -56,7 +56,7 @@ export default function Playlist() {
 
     // Handle case if playlist is not found
     if (!playlist) {
-        return <div>Playlist not found</div>;
+        return <div style={{color: 'white'}}>Playlist not found</div>;
     }
 
     const [hoveredTrack, setHoveredTrack] = useState(null); // State to track which track is hovered
@@ -70,7 +70,11 @@ export default function Playlist() {
     };
 
     return (
+        
         <div className="playlist-page">
+            <div className="icon-div">
+                        <ChevronLeft size={25} id="less-icon" />
+                    </div>
             <div className="header-playlist">
                 <div className="play-img">
                     <img src={playlist.img} alt={`${playlist.name} Image`} />

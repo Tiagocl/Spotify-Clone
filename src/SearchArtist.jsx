@@ -1,6 +1,6 @@
 import React from 'react'
 import {useHover} from 'react-use'
-export default function ({artist, choseTrack}) {
+export default function SearchArtist({artist, choseTrack}) {
 
     const [hoverable, isHovered] = useHover((hovered) => (
     <div className='artist-container'>

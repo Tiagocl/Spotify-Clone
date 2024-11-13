@@ -2,14 +2,20 @@ import { ChevronLeft, Bell, Users, CircleUserRound } from 'lucide-react';
 import Button from './Button';
 import PlaylistRect from './PlaylistRect';
 import React, { useEffect, useState } from 'react';
-import PlaylistCard from './PlaylistCard';
+import PlaylistCard from './RecentlyPlayed';
 import { useNavigate } from 'react-router-dom';
 import spotifyApi from './SpotifyApi';
+import RecentlyPlayed from './RecentlyPlayed';
+import TopTracks from './TopTracks';
 
 export default function MusicComponent({ accessToken }) {
     const navigate = useNavigate();
     const [activeButton, setActiveButton] = useState(null);
-    const [userName, setUserName] = useState(""); // Add state to store username
+    const [userName, setUserName] = useState(""); 
+    const [recentTracks, setRecentTracks] = useState([]); 
+    const [top, setTopTracks] = useState([]); 
+    const [userPlaylists, setUserPlaylists] = useState([]); 
+
 
     function handlePlayListClick(id) {
         navigate(`/playlist/${id}`);
@@ -33,15 +39,78 @@ export default function MusicComponent({ accessToken }) {
         Promise.all([
         spotifyApi.getMe(),
         spotifyApi.getMyRecentlyPlayedTracks({limit: 4}),
+        spotifyApi.getMyTopTracks(),
         ])
-        .then(([me,recent]) => {
+        .then(async([me,recent,topTrackRes]) => {
             console.log(me.body);
             console.log(recent.body);
+            console.log(topTrackRes.body);
             if (cancel) return;
 
             const fetchedUserName = me.body.display_name;
             setUserName(fetchedUserName); 
             console.log(fetchedUserName); 
+
+            const recentTracks = recent.body.items.map(recent => {
+                const biggestRecentImage = recent.track.album.images.reduce(
+                    (biggest,image) => {
+                        return image.height > biggest.height ? image : biggest;
+                    },
+                    recent.track.album.images[0]
+                );
+                return {
+                    name : recent.track.name,
+                    artist: 'By ' + recent.track.artists[0].name,
+                    recentImage: biggestRecentImage.url,
+                    uri:recent.track.uri
+                }
+            })
+            setRecentTracks(recentTracks);
+            
+
+            const topTracks = topTrackRes.body.items.map(topTrack => {
+                const biggestTopImage = topTrack.album.images.reduce(
+                (biggest,image) => {
+                    return image.height > biggest.height ? image : biggest;
+                },
+                topTrack.album.images[0]
+                );
+                return {
+                    name: topTrack.name,
+                    artist: topTrack.artists[0].name,
+                    topTrackImage: biggestTopImage.url,
+                    uri: topTrack.uri
+                }
+            })
+            setTopTracks(topTracks);
+
+            const userPlaylists = await spotifyApi.getUserPlaylists();
+            console.log(userPlaylists.body);
+            if(!cancel) {
+                const sortedPlaylists = userPlaylists.body.items.map(uplay => {
+                    const biggestUserPlaylistImage = uplay.images.reduce(
+                        (biggest,image) => {
+                            return image.height > biggest.height ? image : biggest;
+                        },
+                        uplay.images[0]
+                    );
+                    return {
+                        name: uplay.name,
+                        uplaylistImage: biggestUserPlaylistImage.url,
+                        uri: uplay.uri,
+                        ownerId: uplay.owner.id
+                    };
+                })
+                .sort((a, b) => {
+                    // Sort: owner first, then collaborative, then others
+                    if (a.ownerId === me.body.id && b.ownerId !== me.body.id) return -1; // a is your own playlist
+                    if (a.ownerId !== me.body.id && b.ownerId === me.body.id) return 1; // b is your own playlist
+                    return 0; // No change in order if both are the same type
+                });
+                setUserPlaylists(sortedPlaylists);
+                console.log(sortedPlaylists);
+                
+            }
         })
         .catch(err => console.error('Spotify API access error', err)); 
     
@@ -52,9 +121,7 @@ export default function MusicComponent({ accessToken }) {
         <>
             <div className="fixed-container">
                 <div className="top">
-                    <div className="icon-div">
-                        <ChevronLeft size={25} id="less-icon" />
-                    </div>
+                    
                     <div className="profile-icons">
                         <div className="bell">
                             <Bell size={20} id="pro-icon" />
@@ -89,83 +156,29 @@ export default function MusicComponent({ accessToken }) {
 
             <div className="normal-container">
                 <div className="playlist-main">
-                    <PlaylistRect
-                        img="src/assets/img1.png"
-                        name="Chill"
-                        onClick={() => handlePlayListClick(1)}
-                    />
-                    <PlaylistRect
-                        img="src/assets/img1.png"
-                        name="Chill"
-                        onClick={() => handlePlayListClick(2)}
-                    />
-                    <PlaylistRect
-                        img="src/assets/img1.png"
-                        name="Chill"
-                        onClick={() => handlePlayListClick(3)}
-                    />
-                    <PlaylistRect
-                        img="src/assets/img1.png"
-                        name="Chill"
-                        onClick={() => handlePlayListClick(4)}
-                    />
+                   {userPlaylists.map((uplay,index) => (
+                    <PlaylistRect userPlay={uplay} key={`${uplay.uri}-${index}`} onClick={() => handlePlayListClick(uplay.uri)} />
+                   ))}
                 </div>
 
-                <div className="card-container">
+                 <div className="card-container">
                     <div className="card-span">
                         <span>Recently Played</span>
                     </div>
                     <div className="cards">
-                        <PlaylistCard 
-                            name="Daily Mix 1"
-                            img="src/assets/img1.png"
-                            artists="XXXTENTACION, Juice WRLD, Logic and more"
-                            recent= ""
-
-                        />
-                        <PlaylistCard 
-                            name="Daily Mix 2"
-                            img="src/assets/img1.png"
-                            artists="Nagalli, L7NNON, Pk and more"
-                        />
-                        <PlaylistCard 
-                            name="Daily Mix 3"
-                            img="src/assets/img1.png"
-                            artists="Wet Bed Gand, Yuri NR5, LON3r JOHNY and more"
-                        />
-                        <PlaylistCard 
-                            name="Daily Mix 4"
-                            img="src/assets/img1.png"
-                            artists="Litrox, Alcool Club, Dillaz and more"
-                        />
+                       {recentTracks.map((track,index) => (
+                        <RecentlyPlayed music={track} key={`${track.uri}-${index}`} />
+                       ))}
                     </div>
                 </div>
-
                 <div className="card-container">
-                    <div className="card-span">
-                        <span>Recommended Stations</span>
-                        <div className="cards">
-                            <PlaylistCard 
-                                name="Greg Ferreira Radio"
-                                img="src/assets/img1.png"
-                                artists="With Jon Vlogs, Matt Fuze, MISAEL and more"
-                            />
-                            <PlaylistCard 
-                                name="Pop Smoke Radio"
-                                img="src/assets/img1.png"
-                                artists="With Lil TJay, Polo G, Roddy Ricch and more"
-                            />
-                            <PlaylistCard 
-                                name="Travis Scott Radio"
-                                img="src/assets/img1.png"
-                                artists="With will.i.am, Fergie, Timbaland and more"
-                            />
-                            <PlaylistCard 
-                                name="21 Savage Radio"
-                                img="src/assets/img1.png"
-                                artists="With Metro Boomin, Gunna, Future and more"
-                            />
-                        </div>
+                    <div className="card-span top-span">
+                        <span>Top {userName} Tracks</span>
+                    </div>
+                    <div className="cards">
+                       {top.slice(0,4).map((track,index) => (
+                        <TopTracks topTrack={track} key={`${track.uri}-${index}`} />
+                       ))}
                     </div>
                 </div>
             </div>

@@ -15,7 +15,7 @@ export default function MainPage({ code }) {
   return (
     <Router>
       <div className="page">
-        <Side />
+        <Side accessToken={accessToken}/>
         <div className="music-content">
           <Routes>
             <Route path="/" element={<MusicComponent accessToken={accessToken} />} />

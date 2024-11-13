@@ -305,15 +305,18 @@ body {
 
 .playlist-container .name {
   display: flex;
-  align-items: center;
+  align-items: start;
   flex-direction: column;
   justify-content: center;
   gap: 5px;
 }
 
-.playlist-container span {
+.playlist-container #name {
   font: inherit;
+  font-size: 0.9rem;
 }
+
+
 
 .play-name {
   align-self: flex-start;
@@ -326,7 +329,7 @@ body {
 }
 
 .type span {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: #A7A7A7;
 }
 
@@ -376,9 +379,10 @@ body {
 .top {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   margin-bottom: 45px;
+  
 
 }
 
@@ -486,6 +490,8 @@ body {
 .main-playlist-container #name {
   font-family: inherit;
   color: #FFFFFF;
+  font-size: 0.8rem;
+  font-weight: 700;
 }
 
 
@@ -511,7 +517,7 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
 }
 
 .main-playlist-container #play-icon {
@@ -550,6 +556,10 @@ body {
   font-size: 1.5rem;
   font-weight: 700;
   padding-left: 15px;
+}
+
+.top-span {
+  margin-top: 30px;
 }
 
 .card {
@@ -636,24 +646,114 @@ body {
 .text-card {
   padding-top: 10px;
   padding-left: 5px;
+  
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
 
 .cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  margin: 20px;
+  margin-left: 10px;
+  max-width: 800px;
+  overflow: hidden;
+}
+
+.trackMain-container {
   display: flex;
-  gap: 0;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  position: relative;
+  width: 170px;
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+
+.trackMain-container:hover {
+  background-color: #282828;
+  border-radius: 5px;
+}
+
+.trackMain-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+.trackMain-name {
+  color: white;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.trackMain-name:hover {
+  text-decoration: underline;
+  text-decoration-style: solid;
+  text-decoration-thickness: 1px;
+}
+
+.trackMain-artist {
+  color: #A7A7A7;
+  font-size: 0.85rem;
+}
+
+.trackMain-img {
+  height: 170px;
+  width: 170px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.trackMain-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.trackMain-container .lib-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1FDF64;
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  bottom: 70px;
+  left: 125px;
+  opacity: 0;
+  transition: all 0.3s;
+  border-radius: 50%;
   padding-left: 2px;
 }
 
+.trackMain-container #play-icon {
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  font-size: 1.7rem;
+}
+
+.lib-top.trackMain-hover {
+  bottom: 80px;
+  opacity: 1;
+}
+
+.lib-top.trackMain-hover:hover {
+  transform: scale(1.1);
+  background-color: #3BE477;
+  
+}
 .playlist-page {
   color: white;
   margin: 0 20px;
   background-color: #121212;
 
 }
-
 
 
 
@@ -744,19 +844,6 @@ body {
   color: #B3B3B3;
 }
 
-/* .playlist-icons .right .custom-order {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  padding: 5px 10px;
-  border-radius: 20px;
-  background-color: #2C2C2C;
-  color: #FFFFFF;
-  font-size: 0.8rem;
-  font-weight: 700;
-  transition: background-color 0.3s;
-} */
 
 .playlist-icons .right .custom-order {
   display: flex;
@@ -1010,14 +1097,12 @@ body {
   width: calc(100% - 50px);
   cursor: pointer;
   color: #ffffff;
-  /* Adjust for light/dark theme */
   margin-right: 10px;
   position: relative;
 }
 
 .searchresult-container:hover {
   background-color: #282828;
-  /* Slightly lighter background on hover */
   border-radius: 5px;
 }
 
@@ -1040,11 +1125,9 @@ body {
 
 .album-art {
   width: 40px;
-  /* Adjust as needed */
   height: 40px;
   object-fit: cover;
   border-radius: 4px;
-  /* Optional */
 }
 
 .overlay {
@@ -1071,7 +1154,6 @@ body {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  /* Takes up the remaining width */
   overflow: hidden;
 }
 
@@ -1084,7 +1166,6 @@ body {
 }
 
 .duration {
-  /* Adjust as needed */
   position: relative;
   right: 30px;
   font-size: 0.85rem;
@@ -1114,12 +1195,10 @@ body {
 .artist {
   font-size: 0.8rem;
   color: #b3b3b3;
-  /* Subtle color for the artist name */
 }
 
 .artist-hovered {
   color: #ffffff;
-  /* Adjust for light/dark theme */
   font-size: 0.8rem;
 }
 
@@ -1140,13 +1219,11 @@ body {
 
 
 
-/* Container for the top search result */
 .topsearch-container {
   position: relative;
   width: 385px;
   height: 230px;
   background-color: #181818;
-  /* Dark background for the container */
   border-radius: 8px;
   margin-left: 15px;
   margin-bottom: 50px;
@@ -1164,7 +1241,6 @@ body {
 
 .topsearch-container:hover {
   background-color: #282828;
-  /* Slightly lighter background on hover */
 }
 
 .topsearch-container .title {
@@ -1197,7 +1273,6 @@ body {
   height: 90px;
   border-radius: 5px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-  /* Adds shadow to the album image */
 }
 
 .top-search span {
@@ -1238,8 +1313,7 @@ body {
 .lib-top.hovered:hover {
   transform: scale(1.1);
   background-color: #3BE477;
-  bottom: 20px;
-  opacity: 1;
+
 }
 
 
@@ -1419,9 +1493,7 @@ body {
 
 .albums-search {
   display: grid;
-  display: grid;
   grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-
   margin: 20px;
   margin-left: 10px;
   max-width: 800px;
@@ -1431,6 +1503,8 @@ body {
 .album-container .album-img {
   width: 170px;
   height: 170px;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
 .album-container .album-img img {
@@ -1536,6 +1610,8 @@ body {
 .searchplaylist-container .playlist-img {
   width: 170px;
   height: 170px;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
 .searchplaylist-container .playlist-img img {
