@@ -18,8 +18,8 @@ export default function MainPage({ code }) {
         <Side accessToken={accessToken}/>
         <div className="music-content">
           <Routes>
-            <Route path="/" element={<MusicComponent accessToken={accessToken} />} />
-            <Route path="/search" element={<Search accessToken={accessToken} setPlayingTrack={setPlayingTrack}/>} /> {/* Pass accessToken */}
+            <Route path="/" element={<MusicComponent accessToken={accessToken} setPlayingTrack={setPlayingTrack}/>} />
+            <Route path="/search" element={<Search accessToken={accessToken} setPlayingTrack={setPlayingTrack}/>} /> 
             <Route path="/playlist/:playlistId" element={<Playlist />} />
           </Routes>
         </div>

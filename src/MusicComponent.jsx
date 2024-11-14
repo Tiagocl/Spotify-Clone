@@ -8,7 +8,7 @@ import spotifyApi from './SpotifyApi';
 import RecentlyPlayed from './RecentlyPlayed';
 import TopTracks from './TopTracks';
 
-export default function MusicComponent({ accessToken }) {
+export default function MusicComponent({ accessToken,setPlayingTrack }) {
     const navigate = useNavigate();
     const [activeButton, setActiveButton] = useState(null);
     const [userName, setUserName] = useState(""); 
@@ -25,6 +25,11 @@ export default function MusicComponent({ accessToken }) {
     function handleButtonClick(name) {
         setActiveButton(name);
         console.log(activeButton);
+    }
+
+    function chooseTrack(track) {
+        setPlayingTrack(track);
+        console.log("track",track);
     }
 
     useEffect(() => {
@@ -98,7 +103,8 @@ export default function MusicComponent({ accessToken }) {
                         name: uplay.name,
                         uplaylistImage: biggestUserPlaylistImage.url,
                         uri: uplay.uri,
-                        ownerId: uplay.owner.id
+                        ownerId: uplay.owner.id,
+                        playId: uplay.id,
                     };
                 })
                 .sort((a, b) => {
@@ -157,7 +163,7 @@ export default function MusicComponent({ accessToken }) {
             <div className="normal-container">
                 <div className="playlist-main">
                    {userPlaylists.map((uplay,index) => (
-                    <PlaylistRect userPlay={uplay} key={`${uplay.uri}-${index}`} onClick={() => handlePlayListClick(uplay.uri)} />
+                    <PlaylistRect userPlay={uplay} key={`${uplay.uri}-${index}`} onClick={() => handlePlayListClick(uplay.playId)}/>
                    ))}
                 </div>
 
@@ -167,7 +173,7 @@ export default function MusicComponent({ accessToken }) {
                     </div>
                     <div className="cards">
                        {recentTracks.map((track,index) => (
-                        <RecentlyPlayed music={track} key={`${track.uri}-${index}`} />
+                        <RecentlyPlayed music={track} key={`${track.uri}-${index}`} chooseTrack={chooseTrack} />
                        ))}
                     </div>
                 </div>
@@ -177,7 +183,7 @@ export default function MusicComponent({ accessToken }) {
                     </div>
                     <div className="cards">
                        {top.slice(0,4).map((track,index) => (
-                        <TopTracks topTrack={track} key={`${track.uri}-${index}`} />
+                        <TopTracks topTrack={track} key={`${track.uri}-${index}`} chooseTrack={chooseTrack} />
                        ))}
                     </div>
                 </div>

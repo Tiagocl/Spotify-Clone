@@ -1,10 +1,14 @@
 import React from 'react'
 import {useHover} from 'react-use'
 
-export default function TopTracks({topTrack}) {
+export default function TopTracks({topTrack,chooseTrack}) {
 
+    function handlePlay() {
+        chooseTrack(topTrack);
+    }
     const [hoverable, isHovered] = useHover((hovered) => (
-    <div className='trackMain-container'>
+    <div className='trackMain-container'
+    onClick={handlePlay}>
         <div className='trackMain-img'>
             <img src={topTrack.topTrackImage} alt='' className='artist-art' />
         </div>

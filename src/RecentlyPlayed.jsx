@@ -1,10 +1,15 @@
 import React from 'react'
 import {useHover} from 'react-use'
 
-export default function RecentlyPlayed({music}) {
+export default function RecentlyPlayed({music, chooseTrack}) {
+
+    function handlePlay() {
+        chooseTrack(music);
+    }
 
     const [hoverable, isHovered] = useHover((hovered) => (
-    <div className='trackMain-container'>
+    <div className='trackMain-container'
+    onClick={handlePlay}>
         <div className='trackMain-img'>
             <img src={music.recentImage} alt='' className='artist-art' />
         </div>

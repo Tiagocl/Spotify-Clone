@@ -1,80 +1,76 @@
 import { useParams } from 'react-router-dom';
-import React, { useState } from 'react';
-import img1 from './assets/img1.png';
-import { Shuffle, CirclePlus, CircleArrowDown, Ellipsis, Search, TextQuote, Clock3, Play,ChevronLeft } from 'lucide-react'; // Import Play icon
+import React, { useState, useEffect } from 'react';
+import { ChevronLeft, Clock3 } from 'lucide-react';
+import spotifyApi from './SpotifyApi';
 
 export default function Playlist() {
-    const { playlistId } = useParams(); // Extract playlist ID from the URL
+    const { playlistId } = useParams();
+    const [playlist, setPlaylistData] = useState({ name: '', description: '', img: '', tracks: [] });
+    const [error, setError] = useState(null);
+    const [hoveredTrack, setHoveredTrack] = useState(null);
 
-    const playlistData = {
-        1: {
-            name: 'Chill Hits',
-            description: 'Chill music for relaxing',
-            img: img1,
-            tracks: [
-                { id: 1, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: '18 Abril 2024', time: '3:10' },
-                { id: 2, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: '18 Abril 2024', time: '3:10' },
-                { id: 3, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: '18 Abril 2024', time: '3:10' },
-                { id: 3, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: '18 Abril 2024', time: '3:10' },
-                { id: 3, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: '18 Abril 2024', time: '3:10' },
-                { id: 3, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: '18 Abril 2024', time: '3:10' },
-                { id: 3, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: '18 Abril 2024', time: '3:10' },
-            ],
-        },
-        2: {
-            name: 'Party Mix',
-            description: 'Music for dancing and having fun',
-            img: img1,
-            tracks: [
-                { id: 1, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: '18 Abril 2024', time: '3:10' },
-                { id: 2, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: '18 Abril 2024', time: '3:10' },
-            ],
-        },
-        3: {
-            name: 'Focus',
-            description: 'Music for concentrating',
-            img: img1,
-            tracks: [
-                { id: 1, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: "18 Abril 2024", time: '3:10' },
-                { id: 2, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: "18 Abril 2024", time: '3:10' },
-                { id: 3, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: "18 Abril 2024", time: '3:10' },
-            ],
-        },
-        4: {
-            name: 'Workout',
-            description: 'Music for exercising',
-            img: img1,
-            tracks: [
-                { id: 1, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: "18 Abril 2024", time: '3:10' },
-                { id: 2, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: "18 Abril 2024", time: '3:10' },
-                { id: 3, albumImg: img1, title: 'EARQUAKE', artist: 'Tyler, The Creator', album: 'IGOR', addedby: 'Zé Carneiro', date_added: "18 Abril 2024", time: '3:10' },
-            ],
-        },
-    };
-
-    const playlist = playlistData[playlistId];
-
-    // Handle case if playlist is not found
-    if (!playlist) {
-        return <div style={{color: 'white'}}>Playlist not found</div>;
+    // Format duration from ms to "mm:ss"
+    function formatDuration(durationMs) {
+        const minutes = Math.floor(durationMs / 60000);
+        const seconds = Math.floor((durationMs % 60000) / 1000).toString().padStart(2, '0');
+        return `${minutes}:${seconds}`;
     }
 
-    const [hoveredTrack, setHoveredTrack] = useState(null); // State to track which track is hovered
+    // Format date added to "dd MMM yyyy"
+    function formatDateAdded(dateString) {
+        const date = new Date(dateString);
+        const day = date.getUTCDate();
+        const month = date.toLocaleString('en-US', { month: 'short' });
+        const year = date.getUTCFullYear();
+        return `${day} ${month} ${year}`;
+    }
 
-    const handleMouseEnter = (trackId) => {
-        setHoveredTrack(trackId);
-    };
+    // Fetch the playlist and track data
+    useEffect(() => {
+        async function fetchPlaylistData() {
+            try {
+                const response = await spotifyApi.getPlaylist(playlistId);
+                console.log(response);
+                const playlistInfo = {
+                    name: response.body.name,
+                    description: response.body.description,
+                    img: response.body.images[0]?.url || '',
+                    tracks: response.body.tracks.items.map(item => ({
+                        id: item.track.id,
+                        title: item.track.name,
+                        duration: formatDuration(item.track.duration_ms),
+                        artist: item.track.artists[0].name,
+                        dateAdded: formatDateAdded(item.added_at),
+                        album: item.track.album.name,
+                        albumImg: item.track.album.images[0]?.url || ''
+                    }))
+                };
+                setPlaylistData(playlistInfo);
+            } catch (err) {
+                setError("Could not load playlist data.");
+                console.error('Error fetching playlist:', err);
+            }
+        }
+        fetchPlaylistData();
+    }, [playlistId]);
 
-    const handleMouseLeave = () => {
-        setHoveredTrack(null);
-    };
+    // Handle hover state
+    const handleMouseEnter = (trackId) => setHoveredTrack(trackId);
+    const handleMouseLeave = () => setHoveredTrack(null);
+
+    if (error) {
+        return <div style={{ color: 'white' }}>{error}</div>;
+    }
+
+    if (!playlist.tracks.length) {
+        return <div style={{ color: 'white' }}>Loading...</div>;
+    }
 
     return (
-        
         <div className="playlist-page">
             <div className="icon-div">
-                        <ChevronLeft size={25} id="less-icon" />
-                    </div>
+                <ChevronLeft size={25} id="less-icon" />
+            </div>
             <div className="header-playlist">
                 <div className="play-img">
                     <img src={playlist.img} alt={`${playlist.name} Image`} />
@@ -84,25 +80,6 @@ export default function Playlist() {
                     <p>{playlist.description}</p>
                 </div>
             </div>
-            <div className="playlist-icons">
-                <div className="left">
-                    <div className="play-lib">
-                        <i id="play-icon" className="bi bi-play-fill"></i>
-                    </div>
-                    <Shuffle size={30} id="shuffle-icon" />
-                    <CirclePlus size={30} id="add-icon" />
-                    <CircleArrowDown size={30} id="down-icon" />
-                    <Ellipsis size={30} id="more-icon" />
-                </div>
-                <div className="right">
-                    <Search size={18} id="search-icon" />
-                    <div className="custom-order">
-                        <span>Custom order</span>
-                        <TextQuote size={20} id="quote-icon" />
-                    </div>
-                </div>
-            </div>
-
             <div className="track-list">
                 <div className="little-header-play">
                     <div className="hashtag">
@@ -112,9 +89,6 @@ export default function Playlist() {
                     <div className="album">
                         <span>Album</span>
                     </div>
-                    <div className="added">
-                        <span>Added by</span>
-                    </div>
                     <div className="date-added">
                         <span>Date added</span>
                     </div>
@@ -123,10 +97,9 @@ export default function Playlist() {
                     </div>
                 </div>
             </div>
-            <div className="play-border"></div>
 
             <div className="list">
-                {playlist.tracks.map((track) => (
+                {playlist.tracks.map((track, index) => (
                     <div
                         className="list-each"
                         key={track.id}
@@ -136,16 +109,15 @@ export default function Playlist() {
                         <div className="track-line">
                             <div className="track">
                                 <div className="id">
-                                    {/* Show Play icon if hovered, otherwise show track.id */}
                                     {hoveredTrack === track.id ? (
                                         <i id="play-icon" className="bi bi-play-fill"></i>
                                     ) : (
-                                        <span>{track.id}</span>
+                                        <span>{index + 1}</span>
                                     )}
                                 </div>
                                 <div className="track-part">
                                     <div className="track-img">
-                                        <img src={track.albumImg} alt="" />
+                                        <img src={track.albumImg} alt={`${track.title} cover`} />
                                     </div>
                                     <div className="track-name">
                                         <span>{track.title}</span>
@@ -156,14 +128,11 @@ export default function Playlist() {
                             <div className="album">
                                 <span>{track.album}</span>
                             </div>
-                            <div className="added">
-                                <span>{track.addedby}</span>
-                            </div>
-                            <div className="added-date">
-                                <span>{track.date_added}</span>
+                            <div className="date-added">
+                                <span>{track.dateAdded}</span>
                             </div>
                             <div className="time">
-                                <span>{track.time}</span>
+                                <span>{track.duration}</span>
                             </div>
                         </div>
                     </div>
