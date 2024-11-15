@@ -1,14 +1,15 @@
 import { useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-import { ChevronLeft, Clock3 } from 'lucide-react';
 import spotifyApi from './SpotifyApi';
+import {ChevronLeft, Shuffle, CirclePlus, CircleArrowDown, Ellipsis, Search, TextQuote, Clock3, Play } from 'lucide-react';
 
-export default function Playlist() {
+export default function Playlist({chooseTrack}) {
     const { playlistId } = useParams();
     const [playlist, setPlaylistData] = useState({ name: '', description: '', img: '', tracks: [] });
     const [error, setError] = useState(null);
     const [hoveredTrack, setHoveredTrack] = useState(null);
 
+    
     // Format duration from ms to "mm:ss"
     function formatDuration(durationMs) {
         const minutes = Math.floor(durationMs / 60000);
@@ -41,6 +42,7 @@ export default function Playlist() {
                         duration: formatDuration(item.track.duration_ms),
                         artist: item.track.artists[0].name,
                         dateAdded: formatDateAdded(item.added_at),
+                        added_by: item.added_by.id,
                         album: item.track.album.name,
                         albumImg: item.track.album.images[0]?.url || ''
                     }))
@@ -80,6 +82,24 @@ export default function Playlist() {
                     <p>{playlist.description}</p>
                 </div>
             </div>
+            <div className="playlist-icons">
+                <div className="left">
+                    <div className="play-lib">
+                        <i id="play-icon" className="bi bi-play-fill"></i>
+                    </div>
+                    <Shuffle size={30} id="shuffle-icon" />
+                    <CirclePlus size={30} id="add-icon" />
+                    <CircleArrowDown size={30} id="down-icon" />
+                    <Ellipsis size={30} id="more-icon" />
+                </div>
+                <div className="right">
+                    <Search size={18} id="search-icon" />
+                    <div className="custom-order">
+                        <span>Custom order</span>
+                        <TextQuote size={20} id="quote-icon" />
+                    </div>
+                </div>
+            </div>
             <div className="track-list">
                 <div className="little-header-play">
                     <div className="hashtag">
@@ -88,6 +108,9 @@ export default function Playlist() {
                     </div>
                     <div className="album">
                         <span>Album</span>
+                    </div>
+                    <div className="added">
+                        <span>Added by</span>
                     </div>
                     <div className="date-added">
                         <span>Date added</span>
@@ -112,7 +135,7 @@ export default function Playlist() {
                                     {hoveredTrack === track.id ? (
                                         <i id="play-icon" className="bi bi-play-fill"></i>
                                     ) : (
-                                        <span>{index + 1}</span>
+                                        <span>{index + 1}</span> 
                                     )}
                                 </div>
                                 <div className="track-part">
@@ -128,6 +151,9 @@ export default function Playlist() {
                             <div className="album">
                                 <span>{track.album}</span>
                             </div>
+                            <div className="added_by">
+                                <span>{track.added_by}</span>
+                            </div>
                             <div className="date-added">
                                 <span>{track.dateAdded}</span>
                             </div>
@@ -135,6 +161,7 @@ export default function Playlist() {
                                 <span>{track.duration}</span>
                             </div>
                         </div>
+                        
                     </div>
                 ))}
             </div>

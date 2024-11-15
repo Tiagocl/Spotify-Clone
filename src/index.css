@@ -239,6 +239,7 @@ body {
   align-self: center;
   padding-right: 5px;
   font-size: 0.85rem;
+  width: 100%;
 }
 
 .list-icon {
@@ -899,18 +900,33 @@ body {
   font-size: 0.85rem;
 }
 
-
+.track-list .little-header-play .hashtag span:nth-child(2):hover,
+.track-list .little-header-play .album:hover,
+.track-list .little-header-play .added:hover,
+.track-list .little-header-play .date-added:hover,
+.track-list .little-header-play .clock:hover {
+  color: white;
+}
 
 .track-list .little-header-play .album {
   position: relative;
-  left: 95px;
+  left: 135px;
 }
+
 
 .track-list .little-header-play .added {
   position: relative;
-  left: 32px;
+  left: 170px;
 }
 
+.track-list .little-header-play .clock {
+  position: relative;
+  left: 10px;
+}
+.track-list .little-header-play .date-added {
+  position: relative;
+  left: 110px;
+}
 
 .track .track-part .track-img {
   border-radius: 5px;
@@ -930,10 +946,17 @@ body {
   align-items: center;
   gap: 20px;
 }
-
 .track .id {
-  align-self: center;
+  width: 9px;
+}
+.track .id span{
   color: #A7A7A7;
+}
+.track-line #play-icon {
+  font-size: 1.2rem;
+  color: white;
+  position: relative;
+  right: 4px;
 }
 
 .track .track-part {
@@ -946,12 +969,29 @@ body {
   display: flex;
   flex-direction: column;
   gap: 3px;
+  font-size: 0.9rem;
+}
+
+.track .track-part .track-name span:first-child {
+  width: 210px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .track .track-part .track-name span:nth-child(2) {
   font-family: "Gotham SSm A", "Gotham SSm B", "Helvatica Neue";
   color: #A7A7A7;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
+}
+
+.track .track-part .track-name span:nth-child(2):hover,
+.track-line .album.album:hover,
+.track-line .added_by:hover{
+  color: white;
+  text-decoration: underline;
+  text-decoration-style: solid;
+  text-decoration-thickness: 1px;
 }
 
 @media screen and (max-width:1600px) {
@@ -962,15 +1002,34 @@ body {
   .track-line .added-date {
     display: none;
   }
+
+  .track-list .little-header-play .album {
+    position: relative;
+    left: 100px;
+  }
+  
+  
+  .track-list .little-header-play .added {
+    position: relative;
+    left: 105px;
+  }
+  
+  .track-list .little-header-play .clock {
+    position: relative;
+    left: 10px;
+  }
+}
+
+.list .list-each:first-of-type .track-line {
+  margin-top: 20px;
 }
 
 .track-line {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 20px 0 0px;
-  padding: 8px 20px;
-
+  margin: 0 10px 0 0;
+  padding: 10px 20px;
 }
 
 .track-line:hover {
@@ -978,14 +1037,29 @@ body {
   border-radius: 5px;
 }
 
+
 .track-line .album,
 .track-line .added,
-.track-line .added-date,
+.track-line .added_by,
+.track-line .date-added,
 .track-line .time {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: #A7A7A7;
 
 }
+.track-line .album {
+  display: flex;
+  justify-self: flex-start;
+  width: 190px;
+
+}
+
+.track-line .album span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 
 .login-container {
   display: flex;
