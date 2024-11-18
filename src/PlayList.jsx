@@ -3,13 +3,17 @@ import React, { useState, useEffect } from 'react';
 import spotifyApi from './SpotifyApi';
 import {ChevronLeft, Shuffle, CirclePlus, CircleArrowDown, Ellipsis, Search, TextQuote, Clock3, Play } from 'lucide-react';
 
-export default function Playlist({chooseTrack}) {
+export default function Playlist({accessToken,setPlayingTrack}) {
     const { playlistId } = useParams();
     const [playlist, setPlaylistData] = useState({ name: '', description: '', img: '', tracks: [] });
     const [error, setError] = useState(null);
     const [hoveredTrack, setHoveredTrack] = useState(null);
-
     
+    function chooseTrack(track) {
+        setPlayingTrack(track);
+        console.log("track",track);
+    }
+
     // Format duration from ms to "mm:ss"
     function formatDuration(durationMs) {
         const minutes = Math.floor(durationMs / 60000);
@@ -31,13 +35,14 @@ export default function Playlist({chooseTrack}) {
         async function fetchPlaylistData() {
             try {
                 const response = await spotifyApi.getPlaylist(playlistId);
-                console.log(response);
+                console.log(response.body);
                 const playlistInfo = {
                     name: response.body.name,
                     description: response.body.description,
                     img: response.body.images[0]?.url || '',
                     tracks: response.body.tracks.items.map(item => ({
                         id: item.track.id,
+                        uri: item.track.uri,
                         title: item.track.name,
                         duration: formatDuration(item.track.duration_ms),
                         artist: item.track.artists[0].name,
@@ -125,9 +130,11 @@ export default function Playlist({chooseTrack}) {
                 {playlist.tracks.map((track, index) => (
                     <div
                         className="list-each"
-                        key={track.id}
+                        key={track.uri}
+                        onClick={() => chooseTrack(track)}
                         onMouseEnter={() => handleMouseEnter(track.id)}
                         onMouseLeave={handleMouseLeave}
+                        
                     >
                         <div className="track-line">
                             <div className="track">

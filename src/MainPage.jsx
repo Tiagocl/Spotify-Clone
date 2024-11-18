@@ -20,7 +20,7 @@ export default function MainPage({ code }) {
           <Routes>
             <Route path="/" element={<MusicComponent accessToken={accessToken} setPlayingTrack={setPlayingTrack}/>} />
             <Route path="/search" element={<Search accessToken={accessToken} setPlayingTrack={setPlayingTrack}/>} /> 
-            <Route path="/playlist/:playlistId" element={<Playlist />} />
+            <Route path="/playlist/:playlistId" element={<Playlist accessToken={accessToken} setPlayingTrack={setPlayingTrack} />} />
           </Routes>
         </div>
       </div>
