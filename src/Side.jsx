@@ -6,13 +6,19 @@ import spotifyApi from './SpotifyApi';
 import { useState,useEffect } from 'react';
 
 export default function Side({ accessToken }) {
+    const navigate = useNavigate();
     const [userName, setUserName] = useState("");
     const [sidePlaylists, setSidePlaylists] = useState([]);
 
-    const navigate = useNavigate();
+    
     function handleSearchClick() {
         navigate(`/search`)
         console.log('clicked search')
+    }
+
+    function handlePlayClick(id) {
+        navigate(`/playlist/${id}`);
+        console.log("clicked side playlist with id:", id);
     }
 
     function handleHomeCLick() {
@@ -38,8 +44,6 @@ export default function Side({ accessToken }) {
             setUserName(fetchUserName);
 
             const userPlaylists = await spotifyApi.getUserPlaylists();
-            console.log(userPlaylists.body);
-            console.log(userPlaylists.body);
             if(!cancel) {
                 const sortedPlaylists = userPlaylists.body.items.map(uplay => {
                     const biggestUserPlaylistImage = uplay.images.reduce(
@@ -54,6 +58,7 @@ export default function Side({ accessToken }) {
                         uri: uplay.uri,
                         type: 'Playlist',
                         ownerId: uplay.owner.id,
+                        playId: uplay.id,
                         ownerName: uplay.owner.display_name
                     };
                 })
@@ -64,7 +69,6 @@ export default function Side({ accessToken }) {
                     return 0; // No change in order if both are the same type
                 });
                 setSidePlaylists(sortedPlaylists);
-                console.log(sortedPlaylists);
                 
             }
         })
@@ -115,9 +119,10 @@ export default function Side({ accessToken }) {
                         </div>
                     </div>
                     <div className="list-play">
-                        {sidePlaylists.map(side => (
-                            <PlaylistSide side={side} key={side.uri} />
+                        {sidePlaylists.map((side,index) => (
+                            <PlaylistSide side={side} key={`${side.uri}-${index}`} onClick={() => handlePlayClick(side.playId)}/>
                         ))}
+                        
                     </div>
                 </div>
             </div>

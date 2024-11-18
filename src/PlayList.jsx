@@ -35,7 +35,6 @@ export default function Playlist({accessToken,setPlayingTrack}) {
         async function fetchPlaylistData() {
             try {
                 const response = await spotifyApi.getPlaylist(playlistId);
-                console.log(response.body);
                 const playlistInfo = {
                     name: response.body.name,
                     description: response.body.description,

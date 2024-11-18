@@ -19,7 +19,7 @@ export default function MusicComponent({ accessToken,setPlayingTrack }) {
 
     function handlePlayListClick(id) {
         navigate(`/playlist/${id}`);
-        console.log("clicked playlist with id:", id);
+        console.log("clicked Main Page playlist with id:", id);
     }
 
     function handleButtonClick(name) {
@@ -47,14 +47,10 @@ export default function MusicComponent({ accessToken,setPlayingTrack }) {
         spotifyApi.getMyTopTracks(),
         ])
         .then(async([me,recent,topTrackRes]) => {
-            console.log(me.body);
-            console.log(recent.body);
-            console.log(topTrackRes.body);
             if (cancel) return;
 
             const fetchedUserName = me.body.display_name;
             setUserName(fetchedUserName); 
-            console.log(fetchedUserName); 
 
             const recentTracks = recent.body.items.map(recent => {
                 const biggestRecentImage = recent.track.album.images.reduce(
@@ -90,7 +86,6 @@ export default function MusicComponent({ accessToken,setPlayingTrack }) {
             setTopTracks(topTracks);
 
             const userPlaylists = await spotifyApi.getUserPlaylists();
-            console.log(userPlaylists.body);
             if(!cancel) {
                 const sortedPlaylists = userPlaylists.body.items.map(uplay => {
                     const biggestUserPlaylistImage = uplay.images.reduce(
@@ -114,7 +109,6 @@ export default function MusicComponent({ accessToken,setPlayingTrack }) {
                     return 0; // No change in order if both are the same type
                 });
                 setUserPlaylists(sortedPlaylists);
-                console.log(sortedPlaylists);
                 
             }
         })

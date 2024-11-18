@@ -1,9 +1,9 @@
 import { Dot} from 'lucide-react';
 import PropTypes from 'prop-types';
 
-export default function PlaylistSide({side}) {
+export default function PlaylistSide({side, onClick}) {
     return (
-        <div className="playlist-container">
+        <div className="playlist-container" onClick={onClick}>
             <div className="img">
                 <img src={side.uplaylistImage} alt="Playlist Image" />
             </div>
