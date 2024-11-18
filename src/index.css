@@ -780,8 +780,8 @@ body {
 }
 
 .header-playlist h1 {
-  font-size: 5.5rem;
-  margin: 35px 0 0 0;
+  font-size: 3.5rem;
+  margin: 50px 0 0 0;
 
 }
 
@@ -792,6 +792,7 @@ body {
 
 .header-playlist .play-title p {
   margin: 0;
+  margin-top: 20px;
   padding-left: 10px;
   color: #A7A7A7;
 }

@@ -35,6 +35,7 @@ export default function Playlist({accessToken,setPlayingTrack}) {
         async function fetchPlaylistData() {
             try {
                 const response = await spotifyApi.getPlaylist(playlistId);
+                console.log(response);
                 const playlistInfo = {
                     name: response.body.name,
                     description: response.body.description,
@@ -52,6 +53,7 @@ export default function Playlist({accessToken,setPlayingTrack}) {
                     }))
                 };
                 setPlaylistData(playlistInfo);
+                console.log(playlistInfo);
             } catch (err) {
                 setError("Could not load playlist data.");
                 console.error('Error fetching playlist:', err);
