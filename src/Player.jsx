@@ -25,5 +25,6 @@ export default function Player({accessToken, trackUri}) {
     sliderColor: 'white',
     sliderTrackColor: 'gray',
     sliderHandleColor:'white',
+    layout: 'responsive',
   }}/>
 }

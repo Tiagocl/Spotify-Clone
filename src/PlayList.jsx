@@ -2,8 +2,10 @@ import { useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import spotifyApi from './SpotifyApi';
 import {ChevronLeft, Shuffle, CirclePlus, CircleArrowDown, Ellipsis, Search, TextQuote, Clock3, Play } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Playlist({accessToken,setPlayingTrack}) {
+    const navigate = useNavigate();
     const { playlistId } = useParams();
     const [playlist, setPlaylistData] = useState({ name: '', description: '', img: '', tracks: [] });
     const [error, setError] = useState(null);
@@ -14,6 +16,10 @@ export default function Playlist({accessToken,setPlayingTrack}) {
         console.log("track",track);
     }
 
+    function handleHomeCLick() {
+        navigate(`/`)
+        console.log('clicked home')
+    }
     // Format duration from ms to "mm:ss"
     function formatDuration(durationMs) {
         const minutes = Math.floor(durationMs / 60000);
@@ -76,7 +82,8 @@ export default function Playlist({accessToken,setPlayingTrack}) {
 
     return (
         <div className="playlist-page">
-            <div className="icon-div">
+            <div className="icon-div"
+             onClick={() => handleHomeCLick()}>
                 <ChevronLeft size={25} id="less-icon" />
             </div>
             <div className="header-playlist">
