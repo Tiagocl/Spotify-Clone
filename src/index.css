@@ -29,7 +29,6 @@ body {
 
 .side {
   width: 450px;
-  grid-area: side;
   background-color: #121212;
   color: #ffffff;
   padding: 20px;
@@ -460,7 +459,7 @@ body {
   padding: 0 10px 0 15px;
 
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 10px;
   margin: 0 25px 25 0;
   box-sizing: border-box;
