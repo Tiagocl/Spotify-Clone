@@ -100,7 +100,7 @@ export default function Side({ accessToken }) {
                 <div className="library">
                     <a href="" className='lib-a'>
                         <Library size={25} id="lib-icon" />
-                        Your Library
+                        <span>Your Library</span>
                     </a>
                     <Plus size={21} id="icons" />
                 </div>

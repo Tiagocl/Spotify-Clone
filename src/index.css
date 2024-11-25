@@ -19,10 +19,7 @@ body {
 }
 
 .page {
-  display: grid;
-  grid-template-columns: 415px 1fr;
-  grid-template-areas:
-    "side main";
+  display: flex;
   height: 87vh;
   width: 100vw;
   overflow: hidden;
@@ -31,6 +28,7 @@ body {
 
 
 .side {
+  width: 450px;
   grid-area: side;
   background-color: #121212;
   color: #ffffff;
@@ -40,8 +38,7 @@ body {
 
 
 .music-content {
-  grid-area: main;
-
+  flex: 1;
   position: relative;
   background-color: #121212;
   padding: 0 0 40px 0;
@@ -77,16 +74,12 @@ body {
   flex-direction: column;
   gap: 10px;
   flex: 1;
-
-
   height: calc(100vh - 216px);
   margin-bottom: 10px;
   background-color: #121212;
   padding-top: 15px;
   margin-bottom: 0;
   padding-bottom: 0;
-
-
 }
 
 .library {
@@ -450,7 +443,7 @@ body {
 }
 
 .fixed-container {
-  width: calc(100vw - 450px);
+  width: calc(100vw - 400px);
   position: fixed;
   background-color: #121212;
   padding: 15px 0 15px 15px;
@@ -1779,3 +1772,51 @@ body {
   background-size: 10px 10px;
 }
 
+
+@media only screen and (max-width : 1024px) {
+  body {
+    margin: 0;
+  }
+  .side-container {
+    width: 80px;
+  }
+
+  .side-container .search-container #icons {
+    position: relative;
+    left: 8px;
+  }
+  .side-container .search-container span,
+  .lib-container #icons,
+  .library span,
+  .side-buttons,
+  .side-container .search,
+  .playlist-container .name
+   {
+    display: none;
+  }
+
+  .library #lib-icon {
+    position: relative;
+    left: 8px;
+  }
+  .playlist-container {
+    padding: 0;
+    padding-bottom: 20px;
+    padding-left: 8px;
+  }
+
+  .fixed-container {
+    width: calc(100% - 130px);
+  }
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cards {
+    margin-right: 0;
+  }
+
+  @media only screen and (min-width : 480px) {
+   
+  }
+}
