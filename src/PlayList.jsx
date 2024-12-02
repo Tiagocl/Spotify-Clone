@@ -91,7 +91,7 @@ export default function Playlist({accessToken,setPlayingTrack}) {
                     <img src={playlist.img} alt={`${playlist.name} Image`} />
                 </div>
                 <div className="play-title">
-                    <h1>{playlist.name}</h1>
+                    <span>{playlist.name}</span>
                     <p>{playlist.description}</p>
                 </div>
             </div>
@@ -166,7 +166,7 @@ export default function Playlist({accessToken,setPlayingTrack}) {
                             <div className="album">
                                 <span>{track.album}</span>
                             </div>
-                            <div className="added_by">
+                            <div className="added-by">
                                 <span>{track.added_by}</span>
                             </div>
                             <div className="date-added">

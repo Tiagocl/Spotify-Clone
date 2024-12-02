@@ -774,9 +774,9 @@ body {
   object-fit: cover;
 }
 
-.header-playlist h1 {
+.header-playlist span {
   font-size: 3.5rem;
-  margin: 50px 0 0 0;
+  margin: 50px 0 0 5px;
 
 }
 
@@ -983,7 +983,7 @@ body {
 
 .track .track-part .track-name span:nth-child(2):hover,
 .track-line .album.album:hover,
-.track-line .added_by:hover{
+.track-line .added-by:hover{
   color: white;
   text-decoration: underline;
   text-decoration-style: solid;
@@ -1036,7 +1036,7 @@ body {
 
 .track-line .album,
 .track-line .added,
-.track-line .added_by,
+.track-line .added-by,
 .track-line .date-added,
 .track-line .time {
   font-size: 0.8rem;
@@ -1772,7 +1772,7 @@ body {
 }
 
 
-@media only screen and (max-width : 1024px) {
+/* @media only screen and (max-width : 1024px) {
   body {
     margin: 0;
   }
@@ -1813,9 +1813,76 @@ body {
 
   .cards {
     margin-right: 0;
+
   }
 
-  @media only screen and (min-width : 480px) {
-   
+  .header-playlist {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
   }
+
+  .header-playlist .play-img {
+    display: flex;
+    align-self: center;
+    width: 350px;
+    height: 350px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  }
+
+  .header-playlist .play-title {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-top: 10px;
+    gap: 10px;
+  }
+
+  .header-playlist .play-title p {
+    padding: 0;
+    margin-top: 0;
+  }
+  .header-playlist .play-title span{
+    font-size: 1.5rem;
+    margin-left: 0;
+  }
+
+  .track-list .album,
+  .track-list .added,
+  .track-list .date-added,
+  .track-line .album,
+  .track-line .added-by,
+  .track-line .date-added{
+    display: none;
+  }
+
+  .track .track-part .track-name span:first-child {
+    width: 400px;
+  }
+
 }
+  @media only screen and (max-width : 850px) {
+    .searchresult-container .duration {
+      display: none;
+    }
+  }
+
+
+  @media only screen and (max-width : 480px) {
+    .side-container{
+      display: none;
+    }
+   .topsearch-container {
+    display: none;
+   }
+   .topresult-span {
+    display: none;
+   }
+   .searchresult-container {
+    margin-bottom: 10px;
+   }
+
+   .fixed-container {
+    width: 98%;
+   }
+  } */
