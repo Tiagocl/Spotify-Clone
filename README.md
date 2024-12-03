@@ -8,7 +8,7 @@ This project is a front-end-focused Spotify-clone Web App, designed as a portfol
 
 - **Music Streaming:** Stream music seamlessly (available only for premium users/Video of this feature in the videos section).
 
-- **Search Functionality:**  Search for tracks, artists, or albums with ease.
+- **Search Functionality:**  Search for tracks, artists, or albums with ease. (Note: Due to a recent update to the Spotify Web API, searching for playlists and albums is no longer supported.)
 
 - **User Authentication:** Secure login system to access app features.
 
