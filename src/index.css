@@ -1937,4 +1937,14 @@ body {
     display: flex;
     justify-content: space-between;
   }
+
+  
+  .custom-order span,
+  #clock-icon { 
+    display: none;
+  }
+
+  .results { 
+    margin-bottom: 20px;
+  }
 }
