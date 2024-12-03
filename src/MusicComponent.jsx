@@ -1,4 +1,4 @@
-import { ChevronLeft, Bell, Users, CircleUserRound } from 'lucide-react';
+import { ChevronLeft, Bell, Users, CircleUserRound,Search } from 'lucide-react';
 import Button from './Button';
 import PlaylistRect from './PlaylistRect';
 import React, { useEffect, useState } from 'react';
@@ -25,6 +25,11 @@ export default function MusicComponent({ accessToken,setPlayingTrack }) {
     function handleButtonClick(name) {
         setActiveButton(name);
         console.log(activeButton);
+    }
+
+    function handleSearchClick() {
+        navigate(`/search`)
+        console.log('clicked search')
     }
 
     function chooseTrack(track) {
@@ -121,7 +126,11 @@ export default function MusicComponent({ accessToken,setPlayingTrack }) {
         <>
             <div className="fixed-container">
                 <div className="top">
-                    
+                <div className="procurar"
+                onClick={() => handleSearchClick()}>
+                        <Search size={25} id="icons" />
+                        <span>Search</span>
+                </div>
                     <div className="profile-icons">
                         <div className="bell">
                             <Bell size={20} id="pro-icon" />

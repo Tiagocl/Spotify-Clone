@@ -5,20 +5,22 @@ import TopResultSearch from './TopResultSearch';
 import SearchArtist from './SearchArtist';
 import SearchAlbum from './SearchAlbum';
 import SearchPlaylists from './SearchPlaylists';
-import {Search} from 'lucide-react'
+import {Search,ChevronLeft} from 'lucide-react'
 import spotifyApi from './SpotifyApi';
-// const spotifyApi = new SpotifyWebApi({
-//   clientId: 'c671d3abceae4fe1aa7f5238e4c1ad59'
-// });
+import {useNavigate} from 'react-router-dom';
 
-export default function SearchComponent({ accessToken, setPlayingTrack }) { // Receive accessToken as a prop
+export default function SearchComponent({ accessToken, setPlayingTrack }) { 
+  const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [searchArtists, setSearchArtists] = useState([]);
   const [searchAlbum, setSearchAlbums] = useState([]);
   const [searchPlaylists, setSearchPlaylists] = useState([]);
   
-  
+  function handleHomeCLick() {
+    navigate(`/`)
+    console.log('clicked home')
+}
   
   function msToMinutesAndSeconds(ms) {
     const minutes = Math.floor(ms / 60000)
@@ -151,6 +153,11 @@ export default function SearchComponent({ accessToken, setPlayingTrack }) { // R
   return (
     <>
     <div className="searchi-container">
+    <div className="icon-div"
+             onClick={() => handleHomeCLick()}>
+                <ChevronLeft size={25} id="less-icon" />
+      </div>
+      <div className="search-input">
       <Search size={20} id="search-icon"/>
       <input 
         type="search"
@@ -158,6 +165,7 @@ export default function SearchComponent({ accessToken, setPlayingTrack }) { // R
         value={search}
         onChange={e => setSearch(e.target.value)}
         />
+        </div>
     </div>
       <div className="song-results">
         <div className="top-search">

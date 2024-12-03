@@ -375,8 +375,12 @@ body {
   justify-content: flex-end;
   align-items: center;
   margin-bottom: 45px;
-  
 
+
+}
+
+.top .procurar { 
+  display: none;
 }
 
 .icon-div,
@@ -639,7 +643,7 @@ body {
 .text-card {
   padding-top: 10px;
   padding-left: 5px;
-  
+
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -676,6 +680,7 @@ body {
   gap: 8px;
   margin-top: 10px;
 }
+
 .trackMain-name {
   color: white;
   font-size: 0.95rem;
@@ -739,8 +744,9 @@ body {
 .lib-top.trackMain-hover:hover {
   transform: scale(1.1);
   background-color: #3BE477;
-  
+
 }
+
 .playlist-page {
   color: white;
   margin: 0 20px;
@@ -748,7 +754,7 @@ body {
 
 }
 
-.playlist-page .icon-div { 
+.playlist-page .icon-div {
   margin-top: 20px;
 }
 
@@ -919,6 +925,7 @@ body {
   position: relative;
   left: 10px;
 }
+
 .track-list .little-header-play .date-added {
   position: relative;
   left: 110px;
@@ -942,12 +949,15 @@ body {
   align-items: center;
   gap: 20px;
 }
+
 .track .id {
   width: 9px;
 }
-.track .id span{
+
+.track .id span {
   color: #A7A7A7;
 }
+
 .track-line #play-icon {
   font-size: 1.2rem;
   color: white;
@@ -983,7 +993,7 @@ body {
 
 .track .track-part .track-name span:nth-child(2):hover,
 .track-line .album.album:hover,
-.track-line .added-by:hover{
+.track-line .added-by:hover {
   color: white;
   text-decoration: underline;
   text-decoration-style: solid;
@@ -1003,13 +1013,13 @@ body {
     position: relative;
     left: 100px;
   }
-  
-  
+
+
   .track-list .little-header-play .added {
     position: relative;
     left: 105px;
   }
-  
+
   .track-list .little-header-play .clock {
     position: relative;
     left: 10px;
@@ -1043,6 +1053,7 @@ body {
   color: #A7A7A7;
 
 }
+
 .track-line .album {
   display: flex;
   justify-self: flex-start;
@@ -1531,7 +1542,7 @@ body {
 
 .artist-container .lib-top,
 .album-container .lib-top,
-.searchplaylist-container .lib-top{
+.searchplaylist-container .lib-top {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1738,6 +1749,11 @@ body {
   padding: 20px;
   padding-bottom: 30px;
 }
+
+.searchi-container .icon-div { 
+  display: none;
+}
+
 .searchi-container input {
   background-color: white;
   border: none;
@@ -1748,7 +1764,7 @@ body {
   padding-left: 40px;
   width: 50%;
   transition: background-color 0.3s;
-  
+
 }
 
 .searchi-container input::placeholder {
@@ -1772,10 +1788,11 @@ body {
 }
 
 
-/* @media only screen and (max-width : 1024px) {
+@media only screen and (max-width : 1024px) {
   body {
     margin: 0;
   }
+
   .side-container {
     width: 80px;
   }
@@ -1784,13 +1801,13 @@ body {
     position: relative;
     left: 8px;
   }
+
   .side-container .search-container span,
   .lib-container #icons,
   .library span,
   .side-buttons,
   .side-container .search,
-  .playlist-container .name
-   {
+  .playlist-container .name {
     display: none;
   }
 
@@ -1798,6 +1815,7 @@ body {
     position: relative;
     left: 8px;
   }
+
   .playlist-container {
     padding: 0;
     padding-bottom: 20px;
@@ -1807,6 +1825,7 @@ body {
   .fixed-container {
     width: calc(100% - 130px);
   }
+
   ::-webkit-scrollbar {
     display: none;
   }
@@ -1842,7 +1861,8 @@ body {
     padding: 0;
     margin-top: 0;
   }
-  .header-playlist .play-title span{
+
+  .header-playlist .play-title span {
     font-size: 1.5rem;
     margin-left: 0;
   }
@@ -1852,7 +1872,7 @@ body {
   .track-list .date-added,
   .track-line .album,
   .track-line .added-by,
-  .track-line .date-added{
+  .track-line .date-added {
     display: none;
   }
 
@@ -1861,28 +1881,60 @@ body {
   }
 
 }
-  @media only screen and (max-width : 850px) {
-    .searchresult-container .duration {
-      display: none;
-    }
+
+@media only screen and (max-width : 850px) {
+  .searchresult-container .duration {
+    display: none;
+  }
+}
+
+
+@media only screen and (max-width : 480px) {
+  .side-container {
+    display: none;
   }
 
+  .topsearch-container {
+    display: none;
+  }
 
-  @media only screen and (max-width : 480px) {
-    .side-container{
-      display: none;
-    }
-   .topsearch-container {
+  .topresult-span {
     display: none;
-   }
-   .topresult-span {
-    display: none;
-   }
-   .searchresult-container {
+  }
+
+  .searchresult-container {
     margin-bottom: 10px;
-   }
+  }
 
-   .fixed-container {
+  .fixed-container {
     width: 98%;
-   }
-  } */
+  }
+
+  .searchi-container .icon-div {
+    display: flex;
+  }
+
+  .searchi-container { 
+    display: flex;
+    gap: 20px;
+  }
+
+  .searchi-container  #search-icon { 
+    left: 80px;
+  }
+
+  .searchi-container input { 
+    padding-left: 30px;
+    width: 100%;
+  }
+
+  .top .procurar { 
+    display: flex;
+    gap: 20px;
+  }
+
+  .top { 
+    display: flex;
+    justify-content: space-between;
+  }
+}
