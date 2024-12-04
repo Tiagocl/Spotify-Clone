@@ -18,6 +18,9 @@ body {
   overflow: hidden;
 }
 
+span { 
+  cursor: pointer;
+}
 .page {
   display: flex;
   height: 87vh;
@@ -157,7 +160,6 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  text-decoration: none;
   padding: 10px;
   padding-left: 0;
   color: #A7A7A7;

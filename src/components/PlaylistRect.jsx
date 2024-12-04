@@ -4,7 +4,7 @@ import React from 'react';
 import { useHover } from 'react-use';
 
 export default function PlaylistRect({ userPlay,onClick }) {
-    // Use useHover to track hover state
+
     const [hoverable, isHovered] = useHover((hovered) => (
         <div className="main-playlist-container" onClick={onClick}>
             <div className="img-name">

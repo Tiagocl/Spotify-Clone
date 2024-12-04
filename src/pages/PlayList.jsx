@@ -36,7 +36,6 @@ export default function Playlist({accessToken,setPlayingTrack}) {
         return `${day} ${month} ${year}`;
     }
 
-    // Fetch the playlist and track data
     useEffect(() => {
         async function fetchPlaylistData() {
             try {
@@ -68,7 +67,7 @@ export default function Playlist({accessToken,setPlayingTrack}) {
         fetchPlaylistData();
     }, [playlistId]);
 
-    // Handle hover state
+
     const handleMouseEnter = (trackId) => setHoveredTrack(trackId);
     const handleMouseLeave = () => setHoveredTrack(null);
 

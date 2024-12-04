@@ -1,4 +1,3 @@
-// spotifyApi.js (or any other name you prefer)
 import SpotifyWebApi from 'spotify-web-api-node';
 
 const spotifyApi = new SpotifyWebApi({

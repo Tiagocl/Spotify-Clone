@@ -10,7 +10,7 @@ import {useState} from 'react';
 
 export default function MainPage({ code }) {
   const accessToken = useAuth(code);  // Only call useAuth once here
-  const [playingTrack, setPlayingTrack] = useState(); // Add state for playingTrack
+  const [playingTrack, setPlayingTrack] = useState(); 
 
   return (
     <Router>

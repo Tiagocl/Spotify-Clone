@@ -108,10 +108,9 @@ export default function MusicComponent({ accessToken,setPlayingTrack }) {
                     };
                 })
                 .sort((a, b) => {
-                    // Sort: owner first, then collaborative, then others
-                    if (a.ownerId === me.body.id && b.ownerId !== me.body.id) return -1; // a is your own playlist
-                    if (a.ownerId !== me.body.id && b.ownerId === me.body.id) return 1; // b is your own playlist
-                    return 0; // No change in order if both are the same type
+                    if (a.ownerId === me.body.id && b.ownerId !== me.body.id) return -1; 
+                    if (a.ownerId !== me.body.id && b.ownerId === me.body.id) return 1; 
+                    return 0; 
                 });
                 setUserPlaylists(sortedPlaylists);
                 
@@ -119,7 +118,7 @@ export default function MusicComponent({ accessToken,setPlayingTrack }) {
         })
         .catch(err => console.error('Spotify API access error', err)); 
     
-        return () => { cancel = true; }; // Not really necessary for this case
+        return () => { cancel = true; }; 
     }, [accessToken]);
 
     return (

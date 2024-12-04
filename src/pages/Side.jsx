@@ -63,10 +63,10 @@ export default function Side({ accessToken }) {
                     };
                 })
                 .sort((a, b) => {
-                    // Sort: owner first, then collaborative, then others
-                    if (a.ownerId === me.body.id && b.ownerId !== me.body.id) return -1; // a is your own playlist
-                    if (a.ownerId !== me.body.id && b.ownerId === me.body.id) return 1; // b is your own playlist
-                    return 0; // No change in order if both are the same type
+                    
+                    if (a.ownerId === me.body.id && b.ownerId !== me.body.id) return -1; 
+                    if (a.ownerId !== me.body.id && b.ownerId === me.body.id) return 1; 
+                    return 0; 
                 });
                 setSidePlaylists(sortedPlaylists);
                 
@@ -74,7 +74,7 @@ export default function Side({ accessToken }) {
         })
         .catch(err => console.error('Spotify API access error', err)); 
     
-        return () => { cancel = true; }; // Not really necessary for this case
+        return () => { cancel = true; }; 
     }, [accessToken]);
     
     return (
@@ -98,10 +98,10 @@ export default function Side({ accessToken }) {
 
             <div className="lib-container">
                 <div className="library">
-                    <a href="" className='lib-a'>
+                    <div className='lib-a'>
                         <Library size={25} id="lib-icon" />
                         <span>Your Library</span>
-                    </a>
+                    </div>
                     <Plus size={21} id="icons" />
                 </div>
                 <div className="side-buttons">
