@@ -54,6 +54,13 @@ npm run devStart( on the Server folder)
 
 The interface is intuitive, making it easy to navigate and explore.
 
+## Demo Video 🎥
+
+
+
+https://github.com/user-attachments/assets/4b1923c4-c6b9-4adf-87ff-572868496c0e
+
+
 ## Acknowledgments
 Inspired by Spotify's design and functionality.
 Built using open-source tools and technologies.
