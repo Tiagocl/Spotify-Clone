@@ -30,12 +30,14 @@ span {
 }
 
 
-.side {
-  width: 450px;
-  background-color: #121212;
+.side-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  width: 370px;
   color: #ffffff;
-  padding: 20px;
-  overflow-y: auto;
+
+
 }
 
 
@@ -656,6 +658,7 @@ span {
   grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
   margin: 20px;
   margin-left: 10px;
+  margin-right: 0;
   max-width: 800px;
   overflow: hidden;
 }
