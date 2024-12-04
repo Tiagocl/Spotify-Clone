@@ -33,8 +33,8 @@ span {
 .side-container {
   display: flex;
   flex-direction: column;
-  gap: 3px;
-  width: 370px;
+
+  width: 400px;
   color: #ffffff;
 
 
@@ -450,7 +450,7 @@ span {
 }
 
 .fixed-container {
-  width: calc(100vw - 400px);
+  width: calc(100vw - 440px);
   position: fixed;
   background-color: #121212;
   padding: 15px 0 15px 15px;
