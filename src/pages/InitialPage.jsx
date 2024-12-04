@@ -1,12 +1,12 @@
 import { ChevronLeft, Bell, Users, CircleUserRound,Search } from 'lucide-react';
-import Button from './Button';
-import PlaylistRect from './PlaylistRect';
+import Button from '../components/Button';
+import PlaylistRect from '../components/PlaylistRect';
 import React, { useEffect, useState } from 'react';
-import PlaylistCard from './RecentlyPlayed';
+import PlaylistCard from '../components/RecentlyPlayed';
 import { useNavigate } from 'react-router-dom';
-import spotifyApi from './SpotifyApi';
-import RecentlyPlayed from './RecentlyPlayed';
-import TopTracks from './TopTracks';
+import spotifyApi from '../api/SpotifyApi';
+import RecentlyPlayed from '../components/RecentlyPlayed';
+import TopTracks from '../components/TopTracks';
 
 export default function MusicComponent({ accessToken,setPlayingTrack }) {
     const navigate = useNavigate();

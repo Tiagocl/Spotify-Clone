@@ -1,8 +1,8 @@
 import { Home, Search, Library, Plus, List } from 'lucide-react';
-import PlaylistSide from './PlaylistSide';
-import Button from './Button';
+import PlaylistSide from '../components/PlaylistSide';
+import Button from '../components/Button';
 import { useNavigate } from 'react-router-dom';
-import spotifyApi from './SpotifyApi';
+import spotifyApi from '../api/SpotifyApi';
 import { useState,useEffect } from 'react';
 
 export default function Side({ accessToken }) {

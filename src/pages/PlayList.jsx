@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-import spotifyApi from './SpotifyApi';
+import spotifyApi from '../api/SpotifyApi';
 import {ChevronLeft, Shuffle, CirclePlus, CircleArrowDown, Ellipsis, Search, TextQuote, Clock3, Play } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 

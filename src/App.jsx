@@ -1,5 +1,5 @@
-import Login from './Login'
-import MainPage from "./MainPage"
+import Login from './auth/Login'
+import MainPage from "./pages/MainPage"
 
 const code = new URLSearchParams(window.location.search).get('code')
 function App() {

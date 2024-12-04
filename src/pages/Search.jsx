@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import SpotifyWebApi from 'spotify-web-api-node';
-import SearchResults from './SearchResults';
-import TopResultSearch from './TopResultSearch';
-import SearchArtist from './SearchArtist';
-import SearchAlbum from './SearchAlbum';
-import SearchPlaylists from './SearchPlaylists';
+import SearchResults from '../components/SearchResults';
+import TopResultSearch from '../components/TopResultSearch';
+import SearchArtist from '../components/SearchArtist';
+import SearchAlbum from '../components/SearchAlbum';
+import SearchPlaylists from '../components/SearchPlaylists';
 import {Search,ChevronLeft} from 'lucide-react'
-import spotifyApi from './SpotifyApi';
+import spotifyApi from '../api/SpotifyApi';
 import {useNavigate} from 'react-router-dom';
 
 export default function SearchComponent({ accessToken, setPlayingTrack }) { 

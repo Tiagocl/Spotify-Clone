@@ -2,9 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Side from "./Side";
 import Play from "./Play";
-import MusicComponent from "./MusicComponent";
+import MusicComponent from "./InitialPage";
 import Playlist from './PlayList';
-import useAuth from './useAuth';
+import useAuth from '../auth/useAuth';
 import Search from './Search';
 import {useState} from 'react';
 
