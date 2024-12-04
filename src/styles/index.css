@@ -69,7 +69,7 @@ span {
   height: 75px;
   margin-bottom: 10px;
   background-color: #121212;
-  flex: 1;
+
 }
 
 .lib-container {
@@ -82,7 +82,7 @@ span {
   margin-bottom: 10px;
   background-color: #121212;
   padding-top: 15px;
-  margin-bottom: 0;
+  margin-bottom: 10px;
   padding-bottom: 0;
 }
 
@@ -251,7 +251,7 @@ span {
 
 .playlist {
   overflow-y: scroll;
-
+  height: calc(100vh - 115px);
 }
 
 .list-play {
