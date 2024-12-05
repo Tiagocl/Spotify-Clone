@@ -12,7 +12,7 @@ This is a front-end-focused Spotify-clone, designed as a portfolio project to sh
 - **🔍 Search Functionality:**  Search for tracks, artists, or albums.
 (Note: Due to a recent Spotify Web API update, playlist and album search is not supported.)
 
-- **🔑 User Authentication: ** Secure login system to access app features using Spotify's OAuth.
+- **🔑 User Authentication:** Secure login system to access app features using Spotify's OAuth.
 
 
 
