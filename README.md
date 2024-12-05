@@ -85,26 +85,13 @@ https://github.com/user-attachments/assets/4b1923c4-c6b9-4adf-87ff-572868496c0e
 
 **1.** Open the app in your browser (default is http://localhost:5173 for Vite).
 
-**2.** Log in to your account to access the features.
+**2.** Log in to your account to access the features.(if you created the app) 
 
-**3.** Use the search bar to find your favorite music or explore playlists.
+**3.** Use the search bar to find your favorite music.
 
 **4.** Premium users can stream music directly.
 
 The interface is intuitive, making it easy to navigate and explore.
-
-## 🌟 Highlights for Recruiters
-
-- **Frontend**
-
-   - **Built with React and Vite.**  
-   - **Organized for scalability** with reusable components.
-
-
-- **Backend**
-
-   - **Built with Node.js and Express.js.**  
-   - **Handles authentication, token refresh, and secure communication with the Spotify API.**
 
 
 
