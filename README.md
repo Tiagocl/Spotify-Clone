@@ -31,7 +31,7 @@ Due to Spotify's API guidelines, this app is currently in development mode. In t
 
 ### 👨‍💻 How to Access the App
 
-There are 3 ways you can explore the project:
+There are 2 ways you can explore the project:
 
 ### **1.** Set Up Your Own App
 
@@ -51,9 +51,7 @@ REDIRECT_URI=your_redirect_uri
   
 If you'd prefer not to set up the app, you can still explore the codebase to understand the project or watch the demo videos to see the app in action.
 
-### **3.** Ask for permission
 
-I can enter your username as one of the approved users on my app. Just send an email to (tiagocamposlourenco@gmail.com)
 
 ## 🚀 Installation & Setup
 
