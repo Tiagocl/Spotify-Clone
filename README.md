@@ -105,6 +105,3 @@ https://github.com/user-attachments/assets/974ea60f-a8e9-41f5-9bd5-630faf1b6b21
 
 The interface is intuitive, making it easy to navigate and explore.
 
-
-
-
