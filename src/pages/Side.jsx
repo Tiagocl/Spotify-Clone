@@ -46,6 +46,10 @@ export default function Side({ accessToken }) {
             const userPlaylists = await spotifyApi.getUserPlaylists();
             if(!cancel) {
                 const sortedPlaylists = userPlaylists.body.items.map(uplay => {
+
+                    if (uplay === null || uplay === undefined || !uplay.images || uplay.images.length === 0) {
+                        return null;
+                    }
                     const biggestUserPlaylistImage = uplay.images.reduce(
                         (biggest,image) => {
                             return image.height > biggest.height ? image : biggest;
@@ -62,6 +66,7 @@ export default function Side({ accessToken }) {
                         ownerName: uplay.owner.display_name
                     };
                 })
+                .filter(uplay => uplay !== null)
                 .sort((a, b) => {
                     
                     if (a.ownerId === me.body.id && b.ownerId !== me.body.id) return -1; 

@@ -10,7 +10,6 @@ This is a front-end-focused Spotify-clone, designed as a portfolio project to sh
 (For demo purposes, this feature is showcased in the Demo Video).
 
 - **🔍 Search Functionality:**  Search for tracks, artists, or albums.
-(Note: Due to a recent Spotify Web API update, playlist and album search is not supported.)
 
 - **🔑 User Authentication:** Secure login system to access app features using Spotify's OAuth.
 
@@ -32,7 +31,7 @@ Due to Spotify's API guidelines, this app is currently in development mode. In t
 
 ### 👨‍💻 How to Access the App
 
-There are two ways you can explore the project:
+There are 3 ways you can explore the project:
 
 ### **1.** Set Up Your Own App
 
@@ -40,7 +39,7 @@ You can create your own app on the Spotify Developer Dashboard and replace the .
 
 - Go to spotify developer (https://developer.spotify.com)
 - In the Top right corner click on dashboard.
-- Create new App (just need to give it a name and in the Redirect URIs put http://localhost:5173
+- Create new App (just need to give it a name and in the Redirect URIs put http://localhost:5173)
 - Replace the following variables in your .env file:
 ```
 SPOTIFY_CLIENT_ID=your_client_id
@@ -51,6 +50,10 @@ REDIRECT_URI=your_redirect_uri
 ### **2.** View the code & demo Videos 
   
 If you'd prefer not to set up the app, you can still explore the codebase to understand the project or watch the demo videos to see the app in action.
+
+### **3.** Ask for permission
+
+I can enter your username as one of the approved users on my app. Just send an email to (tiagocamposlourenco@gmail.com)
 
 ## 🚀 Installation & Setup
 
@@ -65,7 +68,7 @@ cd Spotify-Clone
 **2.** Install Dependencies
 ```
 npm install (on the root folder)
-npm install (on the Server folder)
+npm install (cd src/server)
 ```
 
 **3.** Run the App
@@ -79,10 +82,7 @@ npm run devStart( cd src/server)
 
 
 
-https://github.com/user-attachments/assets/46611c8e-ac25-4b9a-bc0f-e06f2b9c2baa
 
-
-https://github.com/user-attachments/assets/20cfea57-be03-4390-90e8-c1a1982edd09
 
 
 

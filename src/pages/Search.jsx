@@ -66,6 +66,7 @@ export default function SearchComponent({ accessToken, setPlayingTrack }) {
         if (cancel) return;
           
           const songsData = trackRes.body.tracks.items.map(track => {
+            if (track === null) return null;
             const biggestAlbumImage = track.album.images.reduce(
               (biggest, image) => {
                 return image.height > biggest.height ? image : biggest;
@@ -82,9 +83,11 @@ export default function SearchComponent({ accessToken, setPlayingTrack }) {
 
             };
           })
+          .filter(track => track !== null);
           setSearchResults(songsData);
        
         const artistsData =  artistsRes.body.artists.items.map(artist => {
+          if (artist === null) return null;
             const biggestArtistImage = artist.images.reduce(
               (biggest,image) => {
                 return image.height > biggest.height ? image : biggest;
@@ -99,10 +102,13 @@ export default function SearchComponent({ accessToken, setPlayingTrack }) {
               id: artist.id
             }
           })
+          .filter(artist => artist !== null);
           setSearchArtists(artistsData);
 
-          
+          console.log(playlistsRes.body.playlists.items);
           const playlistData = playlistsRes.body.playlists.items.map(playlist => {
+            if (playlist === null) return null;
+
             const biggestPlaylistImage = playlist.images.reduce(
               (biggest,image) => {
                 return image.height > biggest.height ? image : biggest;
@@ -116,6 +122,7 @@ export default function SearchComponent({ accessToken, setPlayingTrack }) {
               uri: playlist.uri
             }
           })
+          .filter(playlist => playlist !== null);
           setSearchPlaylists(playlistData);
 
           const ArtistId = artistsData[0].id;
@@ -125,6 +132,7 @@ export default function SearchComponent({ accessToken, setPlayingTrack }) {
             if (!cancel) {
               
               setSearchAlbums(albumRes.body.items.map(album => {
+                if (album === null) return null;
                 const biggestAlbumImage = album.images.reduce(
                   (biggest,image) => {
                     return image.height > biggest.height ? image : biggest;
@@ -138,7 +146,8 @@ export default function SearchComponent({ accessToken, setPlayingTrack }) {
                   uri: album.uri,
                   artist: ArtistName
                 }
-              }))
+              })
+            .filter(album => album !== null))
             }
           }
         

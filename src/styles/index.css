@@ -367,6 +367,11 @@ span {
 }
 
 
+#less-icon { 
+  position: relative;
+  right: 2px;
+}
+
 
 #less-icon,
 #pro-icon {
@@ -379,8 +384,6 @@ span {
   justify-content: flex-end;
   align-items: center;
   margin-bottom: 45px;
-
-
 }
 
 .top .procurar { 
@@ -394,12 +397,13 @@ span {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #131313;
   border-radius: 50px;
   border: none;
   width: 35px;
   height: 35px;
 }
+
+
 
 .icon-div {
   background-color: #2C2C2C;
@@ -1836,7 +1840,7 @@ span {
   }
 
   .cards {
-    margin-right: 0;
+    margin-right: 10px;
 
   }
 
